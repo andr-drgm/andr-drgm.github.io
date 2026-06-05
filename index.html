@@ -112,6 +112,8 @@
     transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
   }
   .project:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.07); border-color: #d6def7; }
+  .project .thumb { margin: -26px -26px 18px; height: 150px; border-radius: 16px 16px 0 0; overflow: hidden; display: block; }
+  .project .thumb svg { width: 100%; height: 100%; display: block; }
   .project h3 { font-size: 19px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
   .project .ptag { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); margin-top: 4px; }
   .project p { color: #444; font-size: 15px; margin-top: 12px; flex-grow: 1; }
@@ -364,6 +366,26 @@
       <div class="projects">
 
         <div class="project">
+          <div class="thumb">
+            <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="cb_bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a1120"/><stop offset="1" stop-color="#0a1f33"/></linearGradient>
+                <linearGradient id="cb_txt" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#3b82f6"/></linearGradient>
+              </defs>
+              <rect width="400" height="150" fill="url(#cb_bg)"/>
+              <g stroke="#1d3a5a" stroke-width="1" opacity="0.55">
+                <line x1="0" y1="38" x2="400" y2="38"/><line x1="0" y1="76" x2="400" y2="76"/><line x1="0" y1="114" x2="400" y2="114"/>
+                <line x1="80" y1="0" x2="80" y2="150"/><line x1="160" y1="0" x2="160" y2="150"/><line x1="240" y1="0" x2="240" y2="150"/><line x1="320" y1="0" x2="320" y2="150"/>
+              </g>
+              <circle cx="200" cy="58" r="62" fill="#22d3ee" opacity="0.10"/>
+              <text x="200" y="64" text-anchor="middle" font-family="Inter,sans-serif" font-size="27" font-weight="800" fill="url(#cb_txt)">Collaborators</text>
+              <text x="200" y="88" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9.5" letter-spacing="0.5" fill="#7ea8c9">GitHub  →  on-chain rewards</text>
+              <g transform="translate(146,108)">
+                <rect x="0" y="0" width="48" height="20" rx="10" fill="#0e2438" stroke="#22d3ee" stroke-width="1"/><text x="24" y="14" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#22d3ee">NFT</text>
+                <rect x="58" y="0" width="48" height="20" rx="10" fill="#0e2438" stroke="#3b82f6" stroke-width="1"/><text x="82" y="14" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#7da9ff">SOL</text>
+              </g>
+            </svg>
+          </div>
           <h3>Collaborators</h3>
           <div class="ptag">Next.js 14 · Solana · Prisma · NextAuth</div>
           <p>A Web3 platform that turns GitHub activity into verifiable on-chain achievements. Contributions mint NFT badges and earn SOL tokens, with a bounty system letting maintainers reward contributors automatically — built toward an open economy for open-source creators.</p>
@@ -374,6 +396,25 @@
         </div>
 
         <div class="project">
+          <div class="thumb">
+            <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="sc_bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#191145"/><stop offset="1" stop-color="#2a1b52"/></linearGradient>
+              </defs>
+              <rect width="400" height="150" fill="url(#sc_bg)"/>
+              <g fill="#372a63">
+                <rect x="232" y="92" width="18" height="38"/><rect x="256" y="74" width="18" height="56"/><rect x="280" y="58" width="18" height="72"/><rect x="304" y="78" width="18" height="52"/><rect x="328" y="50" width="18" height="80"/><rect x="352" y="66" width="18" height="64"/>
+              </g>
+              <g fill="#fbbf24">
+                <circle cx="56" cy="64" r="15"/><circle cx="56" cy="56" r="15"/><circle cx="56" cy="48" r="15"/>
+                <ellipse cx="56" cy="48" rx="15" ry="5" fill="#fcd34d"/>
+              </g>
+              <text x="98" y="56" font-family="'JetBrains Mono',monospace" font-size="20" font-weight="700" fill="#fcd34d" letter-spacing="1">STAKING</text>
+              <text x="98" y="78" font-family="'JetBrains Mono',monospace" font-size="12" fill="#c4b5fd" letter-spacing="1">CALCULATOR</text>
+              <text x="98" y="104" font-family="'JetBrains Mono',monospace" font-size="9" fill="#a78bca">▮ APR → APY · compounding</text>
+              <text x="20" y="138" font-family="'JetBrains Mono',monospace" font-size="8.5" fill="#7c6bb0">· COMPOUND · WAGMI · VALIDATOR VIBES ·</text>
+            </svg>
+          </div>
           <h3>Crypto Staking Calculator</h3>
           <div class="ptag">React 18 · Material UI</div>
           <p>A retro arcade–styled staking calculator that estimates daily-to-yearly rewards and compares APR against compounding scenarios. A finance tool with personality — proof I can ship a polished, self-contained product end to end.</p>
@@ -384,6 +425,39 @@
         </div>
 
         <div class="project">
+          <div class="thumb">
+            <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="io_bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1e1b4b"/><stop offset="1" stop-color="#312e81"/></linearGradient>
+              </defs>
+              <rect width="400" height="150" fill="url(#io_bg)"/>
+              <!-- spreadsheet (left, faded) -->
+              <g opacity="0.4">
+                <rect x="28" y="34" width="96" height="82" rx="4" fill="#0f5132" stroke="#2f9e64" stroke-width="1.5"/>
+                <g stroke="#2f9e64" stroke-width="1">
+                  <line x1="28" y1="54" x2="124" y2="54"/><line x1="28" y1="74" x2="124" y2="74"/><line x1="28" y1="94" x2="124" y2="94"/>
+                  <line x1="60" y1="34" x2="60" y2="116"/><line x1="92" y1="34" x2="92" y2="116"/>
+                </g>
+              </g>
+              <!-- arrow -->
+              <g transform="translate(150,68)" fill="none" stroke="#818cf8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="0" y1="7" x2="34" y2="7"/><polyline points="24,-3 36,7 24,17"/>
+              </g>
+              <!-- app dashboard (right) -->
+              <g>
+                <rect x="206" y="28" width="166" height="94" rx="8" fill="#ffffff"/>
+                <rect x="206" y="28" width="166" height="20" rx="8" fill="#6366f1"/>
+                <rect x="206" y="40" width="166" height="8" fill="#6366f1"/>
+                <circle cx="218" cy="38" r="3" fill="#fff"/><circle cx="228" cy="38" r="3" fill="#fff" opacity="0.7"/>
+                <rect x="216" y="58" width="44" height="54" rx="4" fill="#eef2ff"/>
+                <rect x="268" y="58" width="96" height="14" rx="3" fill="#e0e7ff"/>
+                <rect x="268" y="78" width="96" height="9" rx="3" fill="#eef2ff"/>
+                <rect x="268" y="92" width="70" height="9" rx="3" fill="#eef2ff"/>
+                <rect x="268" y="106" width="84" height="6" rx="3" fill="#f1f5f9"/>
+              </g>
+              <text x="200" y="140" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9" fill="#c7d2fe">spreadsheets  →  one internal platform</text>
+            </svg>
+          </div>
           <h3>Internal Ops Platforms</h3>
           <div class="ptag">Rails · Django · React</div>
           <p>A series of custom internal tools — Archeo for excavation operations, an R&amp;T product-management platform for a multinational, and automation tooling for a marketing agency — replacing spreadsheets and manual workflows with unified digital systems.</p>
@@ -393,6 +467,46 @@
         </div>
 
         <div class="project">
+          <div class="thumb">
+            <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="wa_bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#161a4a"/><stop offset="1" stop-color="#10133a"/></linearGradient>
+                <linearGradient id="wa_drop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbbf24"/><stop offset="1" stop-color="#f97316"/></linearGradient>
+                <linearGradient id="wa_scene" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#93c5fd"/><stop offset="0.55" stop-color="#5b8a72"/><stop offset="1" stop-color="#3f6b54"/></linearGradient>
+              </defs>
+              <rect width="400" height="150" fill="url(#wa_bg)"/>
+              <!-- left phone: wallpaper gallery -->
+              <g transform="translate(34,24)">
+                <rect x="0" y="0" width="74" height="102" rx="11" fill="#0b0e2e" stroke="#2a2f63" stroke-width="1.5"/>
+                <rect x="7" y="8" width="60" height="86" rx="4" fill="#11163f"/>
+                <rect x="7" y="8" width="60" height="11" rx="4" fill="#1c2250"/>
+                <text x="12" y="16.5" font-family="Inter,sans-serif" font-size="6" font-weight="700" fill="#cdd3ff">WallApp</text>
+                <rect x="11" y="24" width="24" height="30" rx="3" fill="#8a6a4a"/>
+                <rect x="39" y="24" width="24" height="30" rx="3" fill="#7c3aed"/>
+                <rect x="11" y="58" width="24" height="30" rx="3" fill="#475569"/>
+                <rect x="39" y="58" width="24" height="30" rx="3" fill="#9ca3af"/>
+              </g>
+              <!-- right phone: scenic wallpaper -->
+              <g transform="translate(292,24)">
+                <rect x="0" y="0" width="74" height="102" rx="11" fill="#0b0e2e" stroke="#2a2f63" stroke-width="1.5"/>
+                <clipPath id="wa_clip"><rect x="7" y="8" width="60" height="86" rx="4"/></clipPath>
+                <g clip-path="url(#wa_clip)">
+                  <rect x="7" y="8" width="60" height="86" fill="url(#wa_scene)"/>
+                  <path d="M7,74 L26,52 L40,68 L52,54 L67,74 Z" fill="#34563f" opacity="0.85"/>
+                  <text x="12" y="70" font-family="Inter,sans-serif" font-size="7" font-weight="700" fill="#fff">Clear Water</text>
+                  <rect x="12" y="80" width="42" height="5" rx="2.5" fill="#ef4444"/>
+                </g>
+              </g>
+              <!-- center logo: water drop -->
+              <g transform="translate(200,60)">
+                <path d="M0,-28 C16,-4 25,6 25,20 A25,25 0 1,1 -25,20 C-25,6 -16,-4 0,-28 Z" fill="url(#wa_drop)"/>
+                <circle cx="-8" cy="16" r="3" fill="#5b3a12"/><circle cx="8" cy="16" r="3" fill="#5b3a12"/>
+                <path d="M-9,25 Q0,33 9,25" fill="none" stroke="#5b3a12" stroke-width="2.5" stroke-linecap="round"/>
+              </g>
+              <text x="200" y="116" text-anchor="middle" font-family="Inter,sans-serif" font-size="17" font-weight="800" fill="#fff">WallApp</text>
+              <text x="200" y="134" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="7.5" fill="#9aa1d8">wallpapers by local artists</text>
+            </svg>
+          </div>
           <h3>WallApp — Wallpapers</h3>
           <div class="ptag">Android · Java</div>
           <p>A published mobile app showcasing wallpapers from local Romanian artists. Users set wallpapers, follow creators, and save favorites — built to promote artists' work beyond a typical social feed.</p>
