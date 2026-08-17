@@ -9,7 +9,7 @@ title: Home
   <div class="wrap hero-grid">
     <div>
       <p class="eyebrow">Software engineer · remote</p>
-      <h1>Software that <span class="warm">moves your business</span>.</h1>
+      <h1>Software that moves your business.</h1>
       <p class="lede">I build internal platforms, automation systems, and MVPs that reach real users — for teams that don't need more features, they need someone who understands the problem behind them.</p>
       <div class="cta">
         <a class="btn btn-primary" href="mailto:andrei.dragomir.contact@gmail.com">Tell me what's slowing you down</a>
