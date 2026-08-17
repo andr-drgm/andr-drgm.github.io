@@ -1,5 +1,18 @@
 # Single source for project cards, rendered by _includes/project-card.html
 # on both index.md and work.md. `anchor` points into the case-study post.
+# File order is render order on both pages; `featured` picks the three on the
+# home page. Archeo leads deliberately — real client, real operational mess,
+# clean before/after.
+
+- name: Archeo
+  featured: true
+  image: /assets/work/archeo.svg
+  alt: Loose spreadsheets and PDF reports consolidated into one records system
+  stack: [Ruby on Rails, TailwindCSS, PostgreSQL]
+  blurb: >
+    An internal platform for an excavation company running on dozens of Excel sheets
+    where nobody was sure which file was current. Sites, crews and hours in one system.
+  anchor: archeo
 
 - name: Pastrac
   featured: true
@@ -15,7 +28,6 @@
     - { label: "App Store", url: "https://apps.apple.com/us/app/pastrac-app/id6754891045" }
 
 - name: Collaborators
-  featured: true
   image: /assets/work/collaborators.jpg
   alt: The Collaborators landing page, a dark Web3 interface
   stack: [Next.js, Solana, Prisma, NextAuth]
@@ -38,15 +50,6 @@
   anchor: medprep
   links:
     - { label: "medprep.ch", url: "https://www.medprep.ch/" }
-
-- name: Archeo
-  image: /assets/work/archeo.svg
-  alt: Loose spreadsheets and PDF reports consolidated into one records system
-  stack: [Ruby on Rails, TailwindCSS, PostgreSQL]
-  blurb: >
-    An internal platform for an excavation company running on dozens of Excel sheets
-    where nobody was sure which file was current. Sites, crews and hours in one system.
-  anchor: archeo
 
 - name: R&T product platform
   image: /assets/work/rt-platform.svg

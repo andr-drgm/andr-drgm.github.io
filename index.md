@@ -7,9 +7,9 @@ title: Home
 
 <section class="hero">
   <div class="wrap">
-    <p class="eyebrow">Software engineer · remote</p>
-    <h1>Software that moves your business.</h1>
-    <p class="lede">I build internal platforms, automation systems, and MVPs that reach real users — for teams that don't need more features, they need someone who understands the problem behind them.</p>
+    <p class="eyebrow">Internal platforms · automation · MVPs</p>
+    <h1>Most projects don't fail on the code.</h1>
+    <p class="lede">They fail on scope, on the wrong problem, on the thing nobody wrote down. I build internal platforms, automation systems, and MVPs that reach real users — for teams that don't need more features, they need someone to work out what's actually in the way first.</p>
     <div class="cta">
       <a class="btn btn-primary" href="mailto:andrei.dragomir.contact@gmail.com">Tell me what's slowing you down</a>
       <a class="btn btn-ghost" href="/work/">See the work</a>
@@ -21,8 +21,8 @@ title: Home
   <div class="wrap">
     <div class="section-head reveal">
       <p class="eyebrow">Selected work</p>
-      <h2>Three things I'm building right now</h2>
-      <p>A shipped iOS app, a Web3 rewards platform, and the testing platform behind a Swiss medical-school prep school.</p>
+      <h2>Three problems, and what changed after</h2>
+      <p>An excavation company that couldn't say which spreadsheet was current, an iOS app shipped to the App Store, and the testing platform behind a Swiss medical-school prep school.</p>
     </div>
     <div class="cards">
       {%- for project in site.data.projects %}
@@ -38,8 +38,8 @@ title: Home
 <section>
   <div class="wrap">
     <div class="section-head reveal">
-      <p class="eyebrow">How I work</p>
-      <h2>Most projects don't fail on the code.</h2>
+      <p class="eyebrow">Approach</p>
+      <h2>Three habits, not a methodology.</h2>
     </div>
     <div class="skill-grid">
       <div class="skill-card reveal">
