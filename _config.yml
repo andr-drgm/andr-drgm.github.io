@@ -1,6 +1,10 @@
 title: Andrei Dragomir
 description: I help startups and teams build software that actually moves the business.
 url: https://andrei-dragomir.com
+# Pinned so absolute_url can't inherit a guessed project-page baseurl from
+# jekyll-github-metadata when it builds without API access.
+baseurl: ""
+repository: andr-drgm/andr-drgm.github.io
 author: Andrei Dragomir
 email: andrei.dragomir.contact@gmail.com
 
