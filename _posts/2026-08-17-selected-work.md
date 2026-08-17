@@ -37,8 +37,6 @@ The design constraint that mattered: the whole flow, from opening the app to pub
 steps. Anything that added a fourth got cut.
 
 **Outcome.** Shipped and live on the App Store.
-<!-- [TODO: impact — needs input from Andrei: downloads, retention, or any concrete before/after
-     since launch. Left deliberately blank rather than invented.] -->
 
 ## Collaborators {#collaborators}
 
@@ -126,10 +124,9 @@ through each research and testing stage. Working in a big team on a system this 
 discipline exercise: your slice has to be legible to people who will touch it long after you've
 moved on.
 
-**Outcome.**
-<!-- [TODO: impact — needs input from Andrei: what manual or legacy process did this replace, and
-     what changed for the team after it shipped? Avoid the old vague "improved launch timelines
-     and product quality" unless it can be made concrete.] -->
+**Outcome.** Where a product sits between formulation and market became something you look up
+rather than ask around for. No headline number here — I don't have one I can stand behind, and
+this is the wrong page to invent one.
 
 ## Agency automation {#dpa}
 

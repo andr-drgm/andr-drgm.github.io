@@ -73,8 +73,7 @@ description: Projects, case studies, and experience — Andrei Dragomir, softwar
       <div class="job reveal">
         <h3>Full-Stack Engineer — Pastrac</h3>
         <span class="meta">Duty Ventures · Apr 2026 — present</span>
-        <p>Built a React Native iOS app for tagging, tracking and sharing locations on a personalized map, with Supabase powering real-time sync, auth and storage. Shipped to the App Store.
-        <!-- [TODO: impact — needs input from Andrei: what changed after launch? downloads, retention, a concrete before/after] --></p>
+        <p>Built a React Native iOS app for tagging, tracking and sharing locations on a personalized map, with Supabase powering real-time sync, auth and storage. Shipped to the App Store.</p>
         <div class="chips"><span class="chip">React Native</span><span class="chip">Supabase</span><span class="chip">iOS</span></div>
       </div>
       <div class="job reveal">
@@ -86,8 +85,7 @@ description: Projects, case studies, and experience — Andrei Dragomir, softwar
       <div class="job reveal">
         <h3>Software Developer — Internal R&amp;T Product Platform</h3>
         <span class="meta">Duty Ventures · Aug 2024 — May 2026</span>
-        <p>Worked within a large team on a complex internal platform for a multinational personal-care manufacturer, tracking products through research and testing before they reached market.
-        <!-- [TODO: impact — needs input from Andrei: what manual/legacy process did this replace? A concrete before/after in how R&T was tracked.] --></p>
+        <p>Worked within a large team on a complex internal platform for a multinational personal-care manufacturer, tracking products through research and testing before they reached market.</p>
         <div class="chips"><span class="chip">Django</span><span class="chip">React</span><span class="chip">Python</span></div>
       </div>
       <div class="job reveal">
