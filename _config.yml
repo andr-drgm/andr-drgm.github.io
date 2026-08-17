@@ -10,6 +10,9 @@ email: andrei.dragomir.contact@gmail.com
 
 permalink: /writing/:title/
 
+plugins:
+  - jekyll-sitemap
+
 # Own layouts and CSS only — opt out of the GitHub Pages default theme (primer).
 theme:
 
