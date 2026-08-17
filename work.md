@@ -165,13 +165,16 @@ description: Projects, case studies, and experience — Andrei Dragomir, softwar
 <section class="band">
   <div class="wrap">
     <div class="contact-box reveal">
-      <p class="eyebrow">Contact</p>
-      <h2>Let's build something</h2>
-      <p class="lede">Remote, working with clients worldwide. BSc Computer Science, Babeș-Bolyai University, Cluj-Napoca.</p>
-      <div class="cta">
-        <a class="btn btn-primary" href="mailto:andrei.dragomir.contact@gmail.com">andrei.dragomir.contact@gmail.com</a>
-        <a class="btn btn-ghost" href="https://github.com/andr-drgm" target="_blank" rel="noopener">GitHub</a>
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h2>Let's build something</h2>
+        <p class="lede">Remote, working with clients worldwide. BSc Computer Science, Babeș-Bolyai University, Cluj-Napoca.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="mailto:andrei.dragomir.contact@gmail.com">andrei.dragomir.contact@gmail.com</a>
+          <a class="btn btn-ghost" href="https://github.com/andr-drgm" target="_blank" rel="noopener">GitHub</a>
+        </div>
       </div>
+      <img class="portrait" src="/assets/img/andrei.jpg" alt="Andrei Dragomir" width="720" height="900" loading="lazy" decoding="async">
     </div>
   </div>
 </section>

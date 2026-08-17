@@ -253,47 +253,15 @@ p:last-child {
 .hero {
 	padding: clamp(3rem, 7vw, 5.5rem) 0 clamp(2.5rem, 5vw, 4rem);
 }
-.hero-grid {
-	display: grid;
-	grid-template-columns: 1.15fr 0.85fr;
-	gap: clamp(2rem, 5vw, 4rem);
-	align-items: center;
-}
 .hero .lede {
 	margin-top: 1.25rem;
-	max-width: 32rem;
+	max-width: 36rem;
 }
 .hero .cta {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 0.75rem;
 	margin-top: 1.9rem;
-}
-.hero .chips {
-	margin-top: 1.6rem;
-}
-
-.portrait-wrap {
-	position: relative;
-}
-.portrait {
-	position: relative;
-	z-index: 1;
-	display: block;
-	width: 100%;
-	aspect-ratio: 4 / 5;
-	object-fit: cover;
-	object-position: 50% 22%;
-	border-radius: 18px;
-	box-shadow: var(--shadow-lift);
-}
-@media (max-width: 820px) {
-	.hero-grid {
-		grid-template-columns: 1fr;
-	}
-	.portrait-wrap {
-		max-width: 20rem;
-	}
 }
 
 /* ---------- sections ---------- */
@@ -493,7 +461,10 @@ section.band .job::before {
 
 /* ---------- contact band ---------- */
 .contact-box {
-	position: relative;
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: clamp(1.5rem, 4vw, 3rem);
+	align-items: center;
 	overflow: hidden;
 	border: 1px solid var(--line);
 	border-radius: 20px;
@@ -510,6 +481,22 @@ section.band .job::before {
 	flex-wrap: wrap;
 	gap: 0.75rem;
 	margin-top: 1.75rem;
+}
+/* The portrait lives here rather than in the hero — it belongs next to the
+   address, not as the loudest thing above the fold. */
+.portrait {
+	display: block;
+	width: clamp(8rem, 17vw, 11.5rem);
+	aspect-ratio: 4 / 5;
+	object-fit: cover;
+	object-position: 50% 22%;
+	border-radius: 18px;
+	box-shadow: var(--shadow);
+}
+@media (max-width: 700px) {
+	.contact-box {
+		grid-template-columns: 1fr;
+	}
 }
 
 /* ---------- post body ---------- */

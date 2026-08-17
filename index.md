@@ -6,26 +6,13 @@ title: Home
 {% assign case_study = "/writing/selected-work/" %}
 
 <section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <p class="eyebrow">Software engineer · remote</p>
-      <h1>Software that moves your business.</h1>
-      <p class="lede">I build internal platforms, automation systems, and MVPs that reach real users — for teams that don't need more features, they need someone who understands the problem behind them.</p>
-      <div class="cta">
-        <a class="btn btn-primary" href="mailto:andrei.dragomir.contact@gmail.com">Tell me what's slowing you down</a>
-        <a class="btn btn-ghost" href="/work/">See the work</a>
-      </div>
-      <div class="chips">
-        <span class="chip chip-accent">Rails</span>
-        <span class="chip chip-accent">Django</span>
-        <span class="chip chip-accent">React &amp; Next.js</span>
-        <span class="chip chip-accent">React Native</span>
-        <span class="chip">Solana</span>
-        <span class="chip">PostgreSQL</span>
-      </div>
-    </div>
-    <div class="portrait-wrap">
-      <img class="portrait" src="/assets/img/andrei.jpg" alt="Andrei Dragomir" width="720" height="900">
+  <div class="wrap">
+    <p class="eyebrow">Software engineer · remote</p>
+    <h1>Software that moves your business.</h1>
+    <p class="lede">I build internal platforms, automation systems, and MVPs that reach real users — for teams that don't need more features, they need someone who understands the problem behind them.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="mailto:andrei.dragomir.contact@gmail.com">Tell me what's slowing you down</a>
+      <a class="btn btn-ghost" href="/work/">See the work</a>
     </div>
   </div>
 </section>
@@ -95,13 +82,16 @@ title: Home
 <section>
   <div class="wrap">
     <div class="contact-box reveal">
-      <p class="eyebrow">Contact</p>
-      <h2>What's slowing you down?</h2>
-      <p class="lede">Tell me about the thing that keeps costing you time or sleep — don't worry about having it all figured out. I'll reply within a day with honest thoughts on scope, timeline, and whether I'm the right fit.</p>
-      <div class="cta">
-        <a class="btn btn-primary" href="mailto:andrei.dragomir.contact@gmail.com">andrei.dragomir.contact@gmail.com</a>
-        <a class="btn btn-ghost" href="https://www.linkedin.com/in/andr-drgm/" target="_blank" rel="noopener">LinkedIn</a>
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h2>What's slowing you down?</h2>
+        <p class="lede">Tell me about the thing that keeps costing you time or sleep — don't worry about having it all figured out. I'll reply within a day with honest thoughts on scope, timeline, and whether I'm the right fit.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="mailto:andrei.dragomir.contact@gmail.com">andrei.dragomir.contact@gmail.com</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/andr-drgm/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
       </div>
+      <img class="portrait" src="/assets/img/andrei.jpg" alt="Andrei Dragomir" width="720" height="900" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
