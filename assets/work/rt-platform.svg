@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-label="Products tracked through research and testing stages before reaching market">
+  <rect width="1200" height="675" fill="#f4f0ea"/>
+  <!-- pipeline rail -->
+  <path d="M120 338 H1080" stroke="#e0d8c9" stroke-width="14" stroke-linecap="round"/>
+  <path d="M120 338 H760" stroke="#c2410c" stroke-width="14" stroke-linecap="round" opacity="0.85"/>
+
+  <!-- stage nodes -->
+  <g font-family="ui-monospace, Menlo, monospace" font-size="16" fill="#6f6a62" text-anchor="middle">
+    <g>
+      <circle cx="180" cy="338" r="30" fill="#c2410c"/>
+      <circle cx="180" cy="338" r="12" fill="#f4f0ea"/>
+      <text x="180" y="412" fill="#171614">research</text>
+      <text x="180" y="436">formulation</text>
+    </g>
+    <g>
+      <circle cx="470" cy="338" r="30" fill="#c2410c"/>
+      <circle cx="470" cy="338" r="12" fill="#f4f0ea"/>
+      <text x="470" y="412" fill="#171614">testing</text>
+      <text x="470" y="436">stability, panel</text>
+    </g>
+    <g>
+      <circle cx="760" cy="338" r="30" fill="#f59e0b"/>
+      <circle cx="760" cy="338" r="12" fill="#f4f0ea"/>
+      <text x="760" y="412" fill="#171614">approval</text>
+      <text x="760" y="436">in review</text>
+    </g>
+    <g>
+      <circle cx="1040" cy="338" r="30" fill="#ffffff" stroke="#cfc7b8" stroke-width="3"/>
+      <text x="1040" y="412" fill="#8b867c">market</text>
+    </g>
+  </g>
+
+  <!-- sample cards riding the pipeline -->
+  <g stroke="#171614" stroke-width="2.5" fill="#ffffff">
+    <rect x="112" y="150" width="136" height="104" rx="9"/>
+    <rect x="402" y="150" width="136" height="104" rx="9"/>
+    <rect x="692" y="150" width="136" height="104" rx="9"/>
+  </g>
+  <g fill="#e0d8c9">
+    <rect x="128" y="170" width="76" height="9" rx="4.5"/><rect x="128" y="188" width="100" height="7" rx="3.5"/><rect x="128" y="204" width="62" height="7" rx="3.5"/>
+    <rect x="418" y="170" width="88" height="9" rx="4.5"/><rect x="418" y="188" width="70" height="7" rx="3.5"/><rect x="418" y="204" width="96" height="7" rx="3.5"/>
+    <rect x="708" y="170" width="66" height="9" rx="4.5"/><rect x="708" y="188" width="94" height="7" rx="3.5"/><rect x="708" y="204" width="78" height="7" rx="3.5"/>
+  </g>
+  <g font-family="ui-monospace, Menlo, monospace" font-size="12" fill="#c2410c">
+    <text x="128" y="238">SKU-0418</text>
+    <text x="418" y="238">SKU-0512</text>
+    <text x="708" y="238">SKU-0607</text>
+  </g>
+  <g stroke="#cfc7b8" stroke-width="2" stroke-dasharray="6 6">
+    <path d="M180 254 V308"/><path d="M470 254 V308"/><path d="M760 254 V308"/>
+  </g>
+
+  <text x="120" y="592" font-family="-apple-system, Segoe UI, sans-serif" font-size="21" fill="#6f6a62">every product, every stage, one platform</text>
+</svg>

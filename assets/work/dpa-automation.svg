@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-label="Repetitive browser work moved from people onto headless automation">
+  <rect width="1200" height="675" fill="#f4f0ea"/>
+
+  <!-- manual side -->
+  <text x="96" y="112" font-family="ui-monospace, Menlo, monospace" font-size="17" fill="#6f6a62">BEFORE — by hand, tab by tab</text>
+  <g opacity="0.45">
+    <g fill="#ffffff" stroke="#cfc7b8" stroke-width="2.5">
+      <rect x="128" y="180" width="220" height="150" rx="9" transform="rotate(-6 238 255)"/>
+      <rect x="110" y="200" width="220" height="150" rx="9" transform="rotate(3 220 275)"/>
+      <rect x="96" y="164" width="220" height="150" rx="9"/>
+    </g>
+    <g fill="#cfc7b8">
+      <rect x="96" y="164" width="220" height="26" rx="9"/>
+      <rect x="112" y="212" width="130" height="9" rx="4.5"/>
+      <rect x="112" y="232" width="168" height="7" rx="3.5"/>
+      <rect x="112" y="248" width="96" height="7" rx="3.5"/>
+      <rect x="112" y="276" width="72" height="20" rx="6"/>
+    </g>
+  </g>
+  <g font-family="ui-monospace, Menlo, monospace" font-size="15" fill="#8b867c">
+    <text x="96" y="392">copy · paste · repeat ×400</text>
+  </g>
+
+  <!-- arrow -->
+  <g stroke="#c2410c" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M400 250 H500"/>
+    <path d="M480 230 L504 250 L480 270"/>
+  </g>
+
+  <!-- automated side -->
+  <text x="560" y="112" font-family="ui-monospace, Menlo, monospace" font-size="17" fill="#c2410c">AFTER — one script, on a schedule</text>
+  <g transform="translate(560 148)">
+    <rect x="0" y="0" width="544" height="230" rx="12" fill="#171614"/>
+    <g fill="#3a3730"><circle cx="26" cy="26" r="6"/><circle cx="48" cy="26" r="6"/></g>
+    <circle cx="70" cy="26" r="6" fill="#f59e0b"/>
+    <g font-family="ui-monospace, Menlo, monospace" font-size="15" fill="#a8a49b">
+      <text x="24" y="82"><tspan fill="#f59e0b">$</tspan> node run-tasks.js --headless</text>
+      <text x="24" y="114">  ✓ queue    412 items</text>
+      <text x="24" y="146">  ✓ done     412 <tspan fill="#e8e4dc">·</tspan> 0 errors</text>
+      <text x="24" y="178">  ✓ elapsed  6m 11s</text>
+      <text x="24" y="206" fill="#6f6a62">  next run 03:00</text>
+    </g>
+  </g>
+  <!-- headless browser instances -->
+  <g transform="translate(560 404)">
+    <g fill="none" stroke="#c2410c" stroke-width="2.5" opacity="0.8">
+      <rect x="0" y="0" width="96" height="66" rx="7"/>
+      <rect x="112" y="0" width="96" height="66" rx="7"/>
+      <rect x="224" y="0" width="96" height="66" rx="7"/>
+      <rect x="336" y="0" width="96" height="66" rx="7"/>
+      <rect x="448" y="0" width="96" height="66" rx="7"/>
+    </g>
+    <g fill="#c2410c" opacity="0.18">
+      <rect x="0" y="0" width="96" height="16" rx="7"/><rect x="112" y="0" width="96" height="16" rx="7"/>
+      <rect x="224" y="0" width="96" height="16" rx="7"/><rect x="336" y="0" width="96" height="16" rx="7"/>
+      <rect x="448" y="0" width="96" height="16" rx="7"/>
+    </g>
+    <text x="0" y="106" font-family="-apple-system, Segoe UI, sans-serif" font-size="19" fill="#6f6a62">Puppeteer workers, no human in the loop</text>
+  </g>
+</svg>

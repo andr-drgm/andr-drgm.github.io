@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-label="A phone showing a grid of wallpapers by local artists">
+  <rect width="1200" height="675" fill="#f4f0ea"/>
+  <circle cx="600" cy="330" r="250" fill="#f59e0b" opacity="0.12"/>
+
+  <!-- phone -->
+  <g transform="translate(468 96)">
+    <rect x="0" y="0" width="264" height="484" rx="34" fill="#171614"/>
+    <rect x="12" y="12" width="240" height="460" rx="26" fill="#ffffff"/>
+    <rect x="102" y="24" width="60" height="10" rx="5" fill="#171614"/>
+    <text x="34" y="72" font-family="-apple-system, Segoe UI, sans-serif" font-size="19" font-weight="700" fill="#171614">WallApp</text>
+    <!-- wallpaper grid -->
+    <g>
+      <rect x="30" y="92" width="94" height="122" rx="9" fill="#c2410c"/>
+      <rect x="140" y="92" width="94" height="122" rx="9" fill="#3f5f52"/>
+      <rect x="30" y="226" width="94" height="122" rx="9" fill="#8b5cf6"/>
+      <rect x="140" y="226" width="94" height="122" rx="9" fill="#f59e0b"/>
+      <rect x="30" y="360" width="94" height="90" rx="9" fill="#475569"/>
+      <rect x="140" y="360" width="94" height="90" rx="9" fill="#0f766e"/>
+    </g>
+    <!-- little heart marks -->
+    <g fill="#ffffff" opacity="0.85" font-family="-apple-system, Segoe UI, sans-serif" font-size="15">
+      <text x="104" y="206" text-anchor="end">♥</text>
+      <text x="214" y="340" text-anchor="end">♥</text>
+    </g>
+  </g>
+
+  <g font-family="ui-monospace, Menlo, monospace" font-size="17" fill="#6f6a62">
+    <text x="96" y="250">set wallpaper</text>
+    <text x="96" y="290">follow creator</text>
+    <text x="96" y="330">save favourite</text>
+  </g>
+  <g stroke="#c2410c" stroke-width="2.5" fill="none" opacity="0.55">
+    <path d="M300 244 C 380 244, 400 290, 456 300"/>
+    <path d="M300 284 C 372 284, 396 306, 456 312"/>
+    <path d="M300 324 C 370 324, 396 322, 456 324"/>
+  </g>
+
+  <text x="760" y="290" font-family="-apple-system, Segoe UI, sans-serif" font-size="23" font-weight="700" fill="#171614">Wallpapers by</text>
+  <text x="760" y="326" font-family="-apple-system, Segoe UI, sans-serif" font-size="23" font-weight="700" fill="#c2410c">local artists</text>
+  <text x="760" y="372" font-family="ui-monospace, Menlo, monospace" font-size="15" fill="#6f6a62">Android · Java</text>
+</svg>

@@ -1,0 +1,102 @@
+# Single source for project cards, rendered by _includes/project-card.html
+# on both index.md and work.md. `anchor` points into the case-study post.
+
+- name: Pastrac
+  featured: true
+  image: /assets/work/pastrac.jpg
+  alt: The Pastrac marketing site, showing the iOS app on a live map
+  stack: [React Native, Supabase, iOS]
+  blurb: >
+    An iOS app for pinning the places that matter to you — drop a pin on a live map,
+    attach notes and photos, categorise the moment, then choose who sees it.
+  anchor: pastrac
+  links:
+    - { label: "pastrac.com", url: "https://www.pastrac.com/" }
+    - { label: "App Store", url: "https://apps.apple.com/us/app/pastrac-app/id6754891045" }
+
+- name: Collaborators
+  featured: true
+  image: /assets/work/collaborators.jpg
+  alt: The Collaborators landing page, a dark Web3 interface
+  stack: [Next.js, Solana, Prisma, NextAuth]
+  blurb: >
+    Turns verified GitHub activity into on-chain rewards. Maintainers set bounties on
+    open issues; contributors get paid to their wallet once the work is reviewed.
+  anchor: collaborators
+  links:
+    - { label: "collaborators.build", url: "https://collaborators.build" }
+    - { label: "Code", url: "https://github.com/andr-drgm/collaborators" }
+
+- name: Med Prep
+  featured: true
+  image: /assets/work/medprep.jpg
+  alt: The Med Prep website for Swiss medical school preparation
+  stack: [Ruby on Rails, Stripe, PostgreSQL]
+  blurb: >
+    The testing and e-learning platform behind a Swiss medical-school prep school —
+    thousands of practice questions, timed mock exams, scoring and subscriptions.
+  anchor: medprep
+  links:
+    - { label: "medprep.ch", url: "https://www.medprep.ch/" }
+
+- name: Archeo
+  image: /assets/work/archeo.svg
+  alt: Loose spreadsheets and PDF reports consolidated into one records system
+  stack: [Ruby on Rails, TailwindCSS, PostgreSQL]
+  blurb: >
+    An internal platform for an excavation company running on dozens of Excel sheets
+    where nobody was sure which file was current. Sites, crews and hours in one system.
+  anchor: archeo
+
+- name: R&T product platform
+  image: /assets/work/rt-platform.svg
+  alt: Products moving through research and testing stages toward market
+  stack: [Django, React, Python]
+  blurb: >
+    Built with a large team for a multinational personal-care manufacturer: tracking
+    every product through research and testing before it reaches market.
+  anchor: rt-platform
+
+- name: Agency automation
+  image: /assets/work/dpa-automation.svg
+  alt: Repetitive browser work moved from people onto scheduled automation
+  stack: [TypeScript, Puppeteer, Firebase, Stripe]
+  blurb: >
+    Puppeteer tooling that took the repetitive browser work off a marketing agency's
+    virtual assistants — plus leading and mentoring the team that maintained it.
+  anchor: dpa
+
+- name: DSS Inox
+  image: /assets/work/dss-inox.svg
+  alt: Brushed stainless steel panels
+  stack: [JavaScript, Firebase Hosting]
+  blurb: >
+    A service site for a stainless-steel fabrication business in Mediaș — the kind of
+    small-business web presence that has to load fast and be trivial to update.
+  anchor: dss-inox
+  links:
+    - { label: "Live site", url: "https://dss-inox-website.web.app/" }
+    - { label: "Code", url: "https://github.com/andr-drgm/dss-inox-website" }
+
+- name: Crypto Staking Calculator
+  image: /assets/work/staking-calculator.jpg
+  alt: A retro arcade styled staking reward calculator
+  stack: [React 18, Material UI]
+  blurb: >
+    A retro arcade–styled staking calculator that estimates rewards and compares plain
+    APR against compounding. A finance tool with a personality, shipped end to end.
+  anchor: staking-calculator
+  links:
+    - { label: "Live demo", url: "https://andrei-dragomir.com/crypto-staking-calculator/" }
+    - { label: "Code", url: "https://github.com/andr-drgm/crypto-staking-calculator" }
+
+- name: WallApp
+  image: /assets/work/wallapp.svg
+  alt: A phone showing a grid of wallpapers by local artists
+  stack: [Android, Java]
+  blurb: >
+    A wallpaper app built to promote Romanian artists rather than bury them in a feed —
+    set wallpapers, follow creators, save favourites. Shipped to Google Play.
+  anchor: wallapp
+  links:
+    - { label: "Code", url: "https://github.com/andr-drgm/WallApp-Wallpaper" }

@@ -1,0 +1,16 @@
+title: Andrei Dragomir
+description: I help startups and teams build software that actually moves the business.
+url: https://andrei-dragomir.com
+author: Andrei Dragomir
+email: andrei.dragomir.contact@gmail.com
+
+permalink: /writing/:title/
+
+# Own layouts and CSS only — opt out of the GitHub Pages default theme (primer).
+theme:
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor

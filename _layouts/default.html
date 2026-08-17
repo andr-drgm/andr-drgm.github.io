@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if page.url == "/" %}{{ site.title }} — Software that moves your business{% else %}{{ page.title }} — {{ site.title }}{% endif %}</title>
+<meta name="description" content="{{ page.description | default: site.description }}">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<link rel="stylesheet" href="/assets/css/main.css">
+<meta name="theme-color" content="#fbf9f6">
+<meta property="og:type" content="{% if page.date %}article{% else %}website{% endif %}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:title" content="{{ page.title | default: site.title }}">
+<meta property="og:description" content="{{ page.description | default: site.description }}">
+<meta property="og:image" content="{{ page.image | default: '/assets/img/andrei.jpg' | absolute_url }}">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="/">Andrei Dragomir<span>.</span></a>
+    <nav>
+      <a href="/work/"{% if page.url == "/work/" %} aria-current="page"{% endif %}>Work</a>
+      <a href="/writing/"{% if page.url == "/writing/" or page.date %} aria-current="page"{% endif %}>Writing</a>
+      <a href="mailto:{{ site.email }}">Email</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+{{ content }}
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="meta">© {{ site.time | date: "%Y" }} {{ site.author }} · Sibiu, Romania</span>
+    <nav>
+      <a href="https://github.com/andr-drgm" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/andr-drgm/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://x.com/adrw_dev" target="_blank" rel="noopener">Twitter</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

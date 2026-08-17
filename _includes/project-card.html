@@ -1,0 +1,19 @@
+{%- assign p = include.project -%}
+<article class="card reveal">
+  <div class="card-thumb">
+    <img src="{{ p.image }}" alt="{{ p.alt }}" loading="lazy" decoding="async">
+  </div>
+  <div class="card-body">
+    <h3>{% if p.anchor %}<a href="{{ include.post_url }}#{{ p.anchor }}">{{ p.name }}</a>{% else %}{{ p.name }}{% endif %}</h3>
+    <div class="chips">
+      {%- for tech in p.stack %}<span class="chip">{{ tech }}</span>{% endfor -%}
+    </div>
+    <p>{{ p.blurb }}</p>
+    <div class="card-links">
+      {%- for link in p.links %}
+      <a href="{{ link.url }}"{% unless link.url contains "andrei-dragomir.com" %} target="_blank" rel="noopener"{% endunless %}>{{ link.label }} ↗</a>
+      {%- endfor %}
+      {%- if p.anchor %}<a href="{{ include.post_url }}#{{ p.anchor }}">Case study →</a>{% endif %}
+    </div>
+  </div>
+</article>
