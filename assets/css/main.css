@@ -341,11 +341,16 @@ section.band {
 	color: var(--accent);
 	text-decoration: none;
 }
+/* Two rows' worth, so a four-chip stack (Collaborators) doesn't push its
+   blurb down relative to the three-chip cards beside it. */
+.card-body .chips {
+	min-height: 3.9rem;
+	align-content: flex-start;
+}
 .card-body > p {
 	color: var(--muted);
 	font-size: 0.95rem;
 	margin: 0;
-	flex: 1;
 }
 .card-links {
 	display: flex;
@@ -353,6 +358,8 @@ section.band {
 	gap: 1rem;
 	font-size: 0.88rem;
 	font-weight: 600;
+	margin-top: auto; /* pinned to the card bottom whatever the blurb length */
+	padding-top: 0.15rem;
 }
 
 /* ---------- timeline ---------- */
@@ -492,6 +499,9 @@ section.band .job::before {
 	object-position: 50% 22%;
 	border-radius: 18px;
 	box-shadow: var(--shadow);
+	/* The shot is lit with an orange gel, which fights the palette. Desaturating
+	   is the stopgap — the real fix is a flat, plainly-lit replacement photo. */
+	filter: grayscale(1) contrast(1.04);
 }
 @media (max-width: 700px) {
 	.contact-box {
