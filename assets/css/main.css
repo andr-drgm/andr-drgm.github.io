@@ -138,20 +138,35 @@ p:last-child {
 	height: 60px;
 }
 .brand {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.55rem;
 	font-weight: 700;
 	font-size: 1rem;
 	letter-spacing: -0.02em;
 	color: var(--text);
+	white-space: nowrap;
 }
-.brand span {
+.brand b {
+	font-weight: inherit;
 	color: var(--accent);
+}
+/* Same crop and desaturation as the hero portrait — one face, two sizes. */
+.brand-face {
+	width: 28px;
+	height: 28px;
+	border-radius: 8px;
+	object-fit: cover;
+	object-position: 50% 18%;
+	filter: grayscale(0.25) contrast(1.02);
 }
 .masthead nav {
 	margin-left: auto;
 	display: flex;
+	align-items: center;
 	gap: 1.4rem;
 }
-.masthead nav a {
+.masthead nav a:not(.btn) {
 	position: relative;
 	font-size: 0.9rem;
 	font-weight: 500;
@@ -159,11 +174,11 @@ p:last-child {
 	padding: 0.15rem 0;
 	transition: color 0.18s ease;
 }
-.masthead nav a:hover {
+.masthead nav a:not(.btn):hover {
 	color: var(--text);
 	text-decoration: none;
 }
-.masthead nav a::after {
+.masthead nav a:not(.btn)::after {
 	content: "";
 	position: absolute;
 	left: 0;
@@ -176,12 +191,41 @@ p:last-child {
 	transform-origin: left;
 	transition: transform 0.2s ease;
 }
-.masthead nav a:hover::after,
+.masthead nav a:not(.btn):hover::after,
 .masthead nav a[aria-current]::after {
 	transform: scaleX(1);
 }
 .masthead nav a[aria-current] {
 	color: var(--text);
+}
+
+/* 390px is the tight case: face + wordmark + two links + the button. */
+@media (max-width: 520px) {
+	.masthead .wrap {
+		gap: 0.75rem;
+		padding-inline: 1rem;
+	}
+	.masthead nav {
+		gap: 0.85rem;
+		white-space: nowrap;
+	}
+	.brand {
+		font-size: 0.92rem;
+	}
+	.masthead .btn-sm {
+		padding: 0.42rem 0.6rem;
+	}
+}
+/* Below ~430px all five items can't share a line. The wordmark is the one that
+   goes: the face keeps the identity, and the nav and CTA stay reachable. */
+@media (max-width: 430px) {
+	.brand span {
+		display: none;
+	}
+	.brand-face {
+		width: 32px;
+		height: 32px;
+	}
 }
 
 /* ---------- buttons + chips ---------- */
@@ -221,6 +265,11 @@ p:last-child {
 .btn-ghost:hover {
 	border-color: var(--accent);
 	color: var(--accent);
+}
+.btn-sm {
+	padding: 0.45rem 0.8rem;
+	font-size: 0.85rem;
+	border-radius: 8px;
 }
 
 .chips {
@@ -272,6 +321,48 @@ p:last-child {
 	gap: 0.75rem;
 	margin-top: 1.9rem;
 }
+/* h1 stays full width; the portrait sits beside the lede, not beside the
+   headline, so it balances the empty right column without competing. */
+.hero-body {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: clamp(1.5rem, 4vw, 3rem);
+	align-items: start;
+}
+/* The only photo on the page. Second instance is the 28px one in the header. */
+/* Two masks intersecting: the bottom edge dissolves into the page and the right
+   edge softens against the viewport margin, which kills the hard rectangle that
+   made the orange rim-lit shot the loudest object above the fold. No border
+   radius or shadow — a faded photo inside a hard-edged card fights itself.
+   NB: the spec said `to left` for the second gradient, but that gradient line runs
+   right-to-left, so it fades the LEFT edge and leaves the right a hard vertical
+   line. `to right` is what produces the described effect. */
+.portrait {
+	display: block;
+	width: clamp(15rem, 22vw, 17.5rem); /* 240–280px */
+	aspect-ratio: 4 / 5;
+	object-fit: cover;
+	object-position: 50% 18%;
+	border-radius: 0;
+	box-shadow: none;
+	filter: saturate(0.7) contrast(0.96);
+	-webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent 96%),
+		linear-gradient(to right, #000 70%, transparent 100%);
+	-webkit-mask-composite: source-in;
+	mask-image: linear-gradient(to bottom, #000 45%, transparent 96%),
+		linear-gradient(to right, #000 70%, transparent 100%);
+	mask-composite: intersect;
+}
+@media (max-width: 760px) {
+	.hero-body {
+		grid-template-columns: 1fr;
+	}
+	/* After the CTAs in source order, so nothing pushes the primary button
+	   below the fold on a 390px viewport. */
+	.portrait {
+		width: 10rem;
+	}
+}
 
 /* ---------- sections ---------- */
 section {
@@ -293,6 +384,51 @@ section.band {
 	margin-top: 2rem;
 	font-family: var(--mono);
 	font-size: 0.82rem;
+}
+
+/* ---------- wide project (diagram-led) ---------- */
+/* The three internal projects. Their schematic is the only evidence there is, and
+   its BEFORE/AFTER labels are unreadable below ~600px, so the figure takes the full
+   container width and the text sits underneath. Stacking also means the image and
+   the text panel always meet flush — side by side, the 16:9 figure was shorter than
+   the text column and left a grey band. */
+.card-wide {
+	grid-column: 1 / -1;
+}
+/* Each schematic carries decorative filler below its content — archeo's excavation
+   strata worst of all — which read as an empty grey band butting against the white
+   text panel. `figure_height` in projects.yml is the content bottom in viewBox units;
+   cropping to it here leaves the SVG files untouched. */
+.wide-figure {
+	display: block;
+	aspect-ratio: var(--fig, 1200 / 675);
+	overflow: hidden;
+	background: var(--surface-2);
+	border-bottom: 1px solid var(--line);
+}
+/* Plain overflow clip, not object-fit — an SVG with a viewBox re-fits itself
+   inside whatever box object-fit hands it, so the crop never happened. */
+.wide-figure img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+.card-wide .card-body {
+	gap: 0.75rem;
+	padding: clamp(1.25rem, 2.5vw, 1.75rem) clamp(1.25rem, 3vw, 2.25rem);
+}
+.card-wide h3 {
+	font-family: var(--display);
+	font-size: 1.5rem;
+	letter-spacing: -0.012em;
+}
+.card-wide .card-body > p {
+	max-width: 46rem;
+}
+/* The two-row minimum exists to align a pair of cards; a full-width row has
+   nothing to align against. */
+.card-wide .chips {
+	min-height: 0;
 }
 
 /* ---------- project cards ---------- */
@@ -410,7 +546,7 @@ section.band .job::before {
 	font-size: 0.95rem;
 }
 
-/* ---------- skills ---------- */
+/* ---------- skills (still the shape used twice on /work/) ---------- */
 .skill-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
@@ -430,6 +566,59 @@ section.band .job::before {
 	text-transform: uppercase;
 	color: var(--muted);
 	margin-bottom: 0.85rem;
+}
+
+/* ---------- approach: the one full-bleed accent section ---------- */
+.band-accent {
+	background: var(--accent);
+	color: #fff;
+	border-block: 1px solid var(--accent-deep);
+}
+.band-accent .eyebrow,
+.band-accent .section-head p,
+.band-accent .habits p {
+	color: #c3ded3; /* 5.3:1 on --accent */
+}
+.band-accent h2 {
+	color: #fff;
+}
+/* Three annotated lines, not three boxed cards. */
+.habits {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	border-top: 1px solid rgba(255, 255, 255, 0.22);
+}
+.habits li {
+	display: grid;
+	grid-template-columns: 4rem minmax(0, 15rem) minmax(0, 1fr);
+	gap: 0.4rem 2rem;
+	align-items: baseline;
+	padding: 1.6rem 0;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+}
+.habits-n {
+	font-family: var(--mono);
+	font-size: 0.78rem;
+	color: #b6d4c9; /* 4.7:1 on --accent — 55% white only made 3.5:1 */
+}
+.habits h3 {
+	font-family: var(--display);
+	font-size: 1.35rem;
+	color: #fff;
+}
+.habits p {
+	margin: 0;
+	font-size: 0.98rem;
+}
+@media (max-width: 760px) {
+	.habits li {
+		grid-template-columns: 3rem minmax(0, 1fr);
+		gap: 0.5rem 1rem;
+	}
+	.habits p {
+		grid-column: 2;
+	}
 }
 
 /* ---------- post list ---------- */
@@ -498,23 +687,38 @@ section.band .job::before {
 	gap: 0.75rem;
 	margin-top: 1.75rem;
 }
-/* The portrait lives here rather than in the hero — it belongs next to the
-   address, not as the loudest thing above the fold. */
-.portrait {
-	display: block;
-	width: clamp(8rem, 17vw, 11.5rem);
-	aspect-ratio: 4 / 5;
-	object-fit: cover;
-	object-position: 50% 22%;
-	border-radius: 18px;
-	box-shadow: var(--shadow);
-	/* The shot is lit with an orange gel, which fights the palette. Desaturating
-	   is the stopgap — the real fix is a flat, plainly-lit replacement photo. */
-	filter: grayscale(1) contrast(1.04);
+/* Right half of the card: the details themselves, where the photo used to be. */
+.contact-details {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 0.55rem 1.1rem;
+	margin: 0;
+	min-width: 17rem;
+	padding-left: clamp(1.5rem, 4vw, 3rem);
+	border-left: 1px solid var(--line);
 }
-@media (max-width: 700px) {
+.contact-details dt {
+	font-family: var(--mono);
+	font-size: 0.72rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--muted);
+	line-height: 1.6;
+}
+.contact-details dd {
+	margin: 0;
+	font-size: 0.92rem;
+	overflow-wrap: anywhere;
+}
+@media (max-width: 760px) {
 	.contact-box {
 		grid-template-columns: 1fr;
+	}
+	.contact-details {
+		min-width: 0;
+		padding: 1.5rem 0 0;
+		border-left: 0;
+		border-top: 1px solid var(--line);
 	}
 }
 
@@ -546,11 +750,17 @@ section.band .job::before {
 .post h2 + h3 {
 	margin-top: 1.4rem;
 }
+/* Figures break out of the 40rem prose column and centre on the measure: the
+   schematics need ~1000px for their BEFORE/AFTER labels to stay readable, and at
+   prose width they rendered at 9px. */
 .post img {
 	display: block;
 	border-radius: 10px;
 	border: 1px solid var(--line);
-	margin: 1.75rem 0;
+	width: min(calc(var(--measure) - 3rem), calc(100vw - 3rem));
+	max-width: none;
+	margin: 1.75rem 0 1.75rem 50%;
+	transform: translateX(-50%);
 }
 .post figure {
 	margin: 1.75rem 0;
@@ -571,6 +781,15 @@ section.band .job::before {
 }
 .post li {
 	margin-bottom: 0.4rem;
+}
+/* Links inside running prose carry an underline: accent green against near-black
+   body text is not distinguishable by hue alone. Nav, buttons and card links are
+   distinguishable by position, so they stay clean. */
+.post p a,
+.post li a {
+	text-decoration: underline;
+	text-underline-offset: 0.15em;
+	text-decoration-thickness: 1px;
 }
 .post blockquote {
 	margin: 1.75rem 0;

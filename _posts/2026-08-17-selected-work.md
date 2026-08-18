@@ -2,7 +2,7 @@
 layout: post
 title: "Selected work, 2020–2026"
 description: Nine projects, what each one was actually for, and what changed after it shipped.
-image: /assets/work/pastrac.jpg
+# No og:image override — the schematics are SVG, which social cards won't render.
 ---
 
 Portfolios usually show you the screen and skip the part that matters — what the thing was
@@ -21,7 +21,7 @@ If you want the scannable version instead, [/work/](/work/) has the cards.
   <a href="https://apps.apple.com/us/app/pastrac-app/id6754891045" target="_blank" rel="noopener">App Store ↗</a>
 </div>
 
-![The Pastrac site, showing the iOS app over a live map](/assets/work/pastrac.jpg)
+![The Pastrac site, showing the iOS app over a live map](/assets/work/pastrac.jpg){: width="1200" height="736"}
 
 **Problem.** Check-ins are a solved problem and a boring one — a pin with a timestamp tells you
 nothing in two years. What people actually want is the memory attached to the place, and control
@@ -46,7 +46,7 @@ steps. Anything that added a fourth got cut.
   <a href="https://github.com/andr-drgm/collaborators" target="_blank" rel="noopener">Code ↗</a>
 </div>
 
-![The Collaborators landing page](/assets/work/collaborators.jpg)
+![The Collaborators landing page](/assets/work/collaborators.jpg){: width="1200" height="687"}
 
 **Problem.** Open-source maintainers have no good way to pay the person who fixed the issue.
 Contributors have no durable, verifiable record of the work they did. Both sides fall back on
@@ -69,7 +69,7 @@ product in a domain — on-chain payments — where "mostly working" isn't good 
   <a href="https://www.medprep.ch/" target="_blank" rel="noopener">medprep.ch ↗</a>
 </div>
 
-![The Med Prep website](/assets/work/medprep.jpg)
+![The Med Prep website](/assets/work/medprep.jpg){: width="1200" height="736"}
 
 **Problem.** Med Prep is a Swiss prep school in Geneva and Lausanne that gets medical students
 through a brutal first year. Their teaching was excellent and their delivery was manual — the
@@ -92,7 +92,7 @@ something staff assembled by hand.
   <span>Internal — no public link</span>
 </div>
 
-![Loose spreadsheets and PDF reports consolidated into one records system](/assets/work/archeo.svg)
+![Loose spreadsheets and PDF reports consolidated into one records system](/assets/work/archeo.svg){: width="1200" height="675"}
 
 **Problem.** An excavation company in Saudi Arabia was running its operations on dozens of Excel
 sheets and a pile of third-party tools. It worked, until nobody could say with confidence which
@@ -113,7 +113,7 @@ data lives in one system now, so "which version is current" stopped being a ques
   <span>Internal — no public link</span>
 </div>
 
-![Products moving through research and testing stages toward market](/assets/work/rt-platform.svg)
+![Products moving through research and testing stages toward market](/assets/work/rt-platform.svg){: width="1200" height="675"}
 
 **Problem.** A multinational personal-care manufacturer needed to see where every product was in
 the pipeline between research and market — formulation, stability testing, panel testing,
@@ -135,7 +135,7 @@ this is the wrong page to invent one.
   <span>Internal — no public link</span>
 </div>
 
-![Repetitive browser work moved from people onto scheduled automation](/assets/work/dpa-automation.svg)
+![Repetitive browser work moved from people onto scheduled automation](/assets/work/dpa-automation.svg){: width="1200" height="675"}
 
 **Problem.** A digital marketing agency had virtual assistants doing hundreds of identical
 browser actions a day — copy, paste, repeat. Expensive, error-prone, and demoralising for the
@@ -157,7 +157,7 @@ tooling that ran it on a schedule. The team kept the interesting half of the job
   <a href="https://github.com/andr-drgm/dss-inox-website" target="_blank" rel="noopener">Code ↗</a>
 </div>
 
-![Brushed stainless steel panels](/assets/work/dss-inox.svg)
+![Brushed stainless steel panels](/assets/work/dss-inox.svg){: width="1200" height="675"}
 
 **Problem.** A stainless-steel fabrication business in Mediaș had no web presence at all. Their
 customers were finding them by word of mouth and phone calls.
@@ -177,7 +177,7 @@ needs a platform.
   <a href="https://github.com/andr-drgm/crypto-staking-calculator" target="_blank" rel="noopener">Code ↗</a>
 </div>
 
-![A retro arcade styled staking reward calculator](/assets/work/staking-calculator.jpg)
+![A retro arcade styled staking reward calculator](/assets/work/staking-calculator.jpg){: width="1200" height="687"}
 
 **Problem.** Staking calculators all quote you an APR and let you assume that's what you'll
 earn. The interesting number is what compounding does to it, and almost nothing shows the two
@@ -197,7 +197,7 @@ like an actual product rather than a form.
   <a href="https://github.com/andr-drgm/WallApp-Wallpaper" target="_blank" rel="noopener">Code ↗</a>
 </div>
 
-![A phone showing a grid of wallpapers by local artists](/assets/work/wallapp.svg)
+![A phone showing a grid of wallpapers by local artists](/assets/work/wallapp.svg){: width="1200" height="675"}
 
 **Problem.** Romanian digital artists were posting work into social feeds that buried it in a
 day. A wallpaper is a better home for that work than a timeline — it's what someone looks at
@@ -212,7 +212,7 @@ plainly rather than leaving a dead link on a portfolio — but the source is sti
 
 ## Early work {#early}
 
-![An exchange rate web app with live currency conversion](/assets/work/exchange-rate.jpg)
+![An exchange rate web app with live currency conversion](/assets/work/exchange-rate.jpg){: width="1200" height="687"}
 
 The [exchange-rate app](https://andrei-dragomir.com/exchange-rate/) is from high school: live
 currency conversion, a converter, and a rate chart. It's still deployed, and I keep it that way

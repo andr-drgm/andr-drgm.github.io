@@ -170,11 +170,21 @@ description: Projects, case studies, and experience — Andrei Dragomir, softwar
         <h2>Let's build something</h2>
         <p class="lede">Remote, working with clients worldwide. BSc Computer Science, Babeș-Bolyai University, Cluj-Napoca.</p>
         <div class="cta">
-          <a class="btn btn-primary" href="mailto:andrei.dragomir.contact@gmail.com">andrei.dragomir.contact@gmail.com</a>
-          <a class="btn btn-ghost" href="https://github.com/andr-drgm" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn btn-primary" href="mailto:{{ site.email }}">Start the conversation</a>
         </div>
       </div>
-      <img class="portrait" src="/assets/img/andrei.jpg" alt="Andrei Dragomir" width="720" height="900" loading="lazy" decoding="async">
+      <dl class="contact-details">
+        <dt>Email</dt>
+        <dd><a href="mailto:{{ site.email }}">{{ site.email }}</a></dd>
+        <dt>LinkedIn</dt>
+        <dd><a href="https://www.linkedin.com/in/andr-drgm/" target="_blank" rel="noopener">andr-drgm</a></dd>
+        <dt>GitHub</dt>
+        <dd><a href="https://github.com/andr-drgm" target="_blank" rel="noopener">andr-drgm</a></dd>
+        <dt>Location</dt>
+        <dd>Sibiu, Romania — remote, CET</dd>
+        <dt>Reply time</dt>
+        <dd>Within a day</dd>
+      </dl>
     </div>
   </div>
 </section>

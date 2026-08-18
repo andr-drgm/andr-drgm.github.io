@@ -6,6 +6,8 @@
 
 - name: Archeo
   featured: true
+  wide: true
+  figure_height: 455
   image: /assets/work/archeo.svg
   alt: Loose spreadsheets and PDF reports consolidated into one records system
   stack: [Ruby on Rails, TailwindCSS, PostgreSQL]
@@ -52,6 +54,8 @@
     - { label: "medprep.ch", url: "https://www.medprep.ch/" }
 
 - name: R&T product platform
+  wide: true
+  figure_height: 625
   image: /assets/work/rt-platform.svg
   alt: Products moving through research and testing stages toward market
   stack: [Django, React, Python]
@@ -61,6 +65,8 @@
   anchor: rt-platform
 
 - name: Agency automation
+  wide: true
+  figure_height: 545
   image: /assets/work/dpa-automation.svg
   alt: Repetitive browser work moved from people onto scheduled automation
   stack: [TypeScript, Puppeteer, Firebase, Stripe]
