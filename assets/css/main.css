@@ -1,46 +1,21 @@
-/* ---------- type ---------- */
-/* Fraunces, latin subset, wght 600-700 + variable opsz. SOFT/WONK are baked
-   in at 0/1, which is where the quirk in the letterforms comes from. */
-@font-face {
-	font-family: "Fraunces";
-	src: url("/assets/fonts/fraunces-latin.woff2") format("woff2");
-	font-weight: 600 700;
-	font-style: normal;
-	font-display: swap;
-	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
-		U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
-		U+2215, U+FEFF, U+FFFD;
-}
-
 /* ---------- tokens ---------- */
+/* No webfont. System sans, black on white, hairline rules, no accent colour —
+   the only colour on the page comes from photographs and project thumbnails. */
 :root {
 	--sans:
 		-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
 		Arial, sans-serif;
 	--mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-	/* Georgia is the fallback on purpose — same serif proportions, so the
-	   swap when Fraunces lands doesn't shift the layout. */
-	--display: "Fraunces", Georgia, "Times New Roman", serif;
 
-	/* One paper, one ink, two greys, one accent. The accent is load-bearing
-	   in three places per page — links, the primary button, the brand dot —
-	   and nowhere else. */
-	--bg: #f5f5f3;
-	--surface: #ffffff;
-	--surface-2: #eaeae6;
-	--text: #131518;
-	--muted: #585c61; /* 5.9:1 on --bg */
-	--line: #dcdcd6;
-	--accent: #12604a; /* 7.0:1 on --bg, 7.6:1 against white */
-	--accent-deep: #0c4536; /* hover only */
+	--bg: #ffffff;
+	--surface: #f6f6f5; /* behind thumbnails while they load */
+	--text: #111111;
+	--muted: #6b6b6b; /* 5.4:1 on white */
+	--line: #e6e6e6;
 
-	--measure: 68rem;
-	--prose: 40rem;
-	--radius: 14px;
-	--shadow:
-		0 1px 2px rgba(19, 21, 24, 0.04), 0 8px 24px -12px rgba(19, 21, 24, 0.12);
-	--shadow-lift:
-		0 2px 4px rgba(19, 21, 24, 0.05), 0 18px 40px -16px rgba(19, 21, 24, 0.22);
+	--measure: 62rem;
+	--prose: 38rem;
+	--ease: cubic-bezier(0.2, 0.8, 0.25, 1);
 }
 
 *,
@@ -57,6 +32,13 @@ body {
 	font-size: 1.0625rem;
 	line-height: 1.65;
 	-webkit-font-smoothing: antialiased;
+	/* Keeps the footer on the bottom edge of short pages (/blog/ is one post). */
+	display: flex;
+	flex-direction: column;
+	min-height: 100dvh;
+}
+main {
+	flex: 1;
 }
 
 .wrap {
@@ -67,21 +49,17 @@ body {
 }
 
 a {
-	color: var(--accent);
+	color: inherit;
 	text-decoration: none;
 }
 a:hover {
 	text-decoration: underline;
 	text-underline-offset: 0.2em;
+	text-decoration-thickness: 1px;
 }
 :focus-visible {
-	outline: 2px solid var(--accent);
+	outline: 2px solid var(--text);
 	outline-offset: 3px;
-	border-radius: 4px;
-}
-/* Accent outline on the accent button is invisible. */
-.btn-primary:focus-visible {
-	outline-color: var(--text);
 }
 
 img {
@@ -89,31 +67,32 @@ img {
 	height: auto;
 }
 
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
 h1,
 h2,
-h3,
-h4 {
+h3 {
 	margin: 0;
-	line-height: 1.15;
-	letter-spacing: -0.022em;
-	font-weight: 700;
-}
-/* Display face on h1/h2 only. h3 and below stay on the system sans. */
-h1,
-h2 {
-	font-family: var(--display);
+	line-height: 1.2;
+	font-weight: 500;
+	letter-spacing: -0.02em;
 }
 h1 {
-	font-size: clamp(2.1rem, 5.2vw, 3.5rem);
-	letter-spacing: -0.012em;
+	font-size: clamp(1.9rem, 4.4vw, 2.9rem);
+	font-weight: 400;
 }
 h2 {
-	font-size: clamp(1.5rem, 3vw, 2rem);
-	letter-spacing: -0.008em;
+	font-size: clamp(1.35rem, 2.4vw, 1.7rem);
 }
 h3 {
-	font-size: 1.15rem;
-	letter-spacing: -0.015em;
+	font-size: 1.1rem;
 }
 p {
 	margin: 0 0 1.1rem;
@@ -122,645 +101,481 @@ p:last-child {
 	margin-bottom: 0;
 }
 
-/* ---------- header ---------- */
+.lede {
+	font-size: 1.15rem;
+	color: var(--muted);
+	line-height: 1.6;
+	max-width: var(--prose);
+}
+.meta {
+	font-size: 0.85rem;
+	color: var(--muted);
+}
+/* Tech lists and small labels. Plain text, not pills. */
+.stack {
+	font-size: 0.82rem;
+	color: var(--muted);
+}
+.label {
+	font-family: var(--mono);
+	font-size: 0.72rem;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+
+/* ---------- brand + wordmark ---------- */
+.brand {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.8rem;
+}
+/* In colour, deliberately — it's the one face on the site. */
+.brand img {
+	width: 34px;
+	height: 34px;
+	border-radius: 50%;
+	object-fit: cover;
+	object-position: 50% 18%;
+}
+.masthead .brand span {
+	font-size: 0.8rem;
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 0.16em;
+	white-space: nowrap;
+}
+
+/* The splash name. Two grid rows stretched to the width of the longer one, so
+   flex space-between makes ANDREI and DRAGOMIR flush on both edges without a
+   per-line tracking value. `gap` is the minimum tracking; the shorter line gets
+   the leftover space added to it. */
+.wordmark {
+	position: relative;
+	display: grid;
+	font-size: clamp(1.85rem, 5.4vw, 3.4rem);
+	font-weight: 300;
+	line-height: 1.08;
+	text-transform: uppercase;
+}
+.wm-line {
+	display: flex;
+	justify-content: space-between;
+	gap: 0.18em;
+}
+.wm-line i {
+	font-style: normal;
+}
+.brand-lg {
+	gap: clamp(1rem, 2.6vw, 2rem);
+}
+.brand-lg img {
+	width: clamp(72px, 10vw, 118px);
+	height: clamp(72px, 10vw, 118px);
+}
+
+/* ---------- splash (first viewport of the home page) ---------- */
+.splash {
+	min-height: 100dvh;
+	display: grid;
+	grid-template-rows: 1fr auto;
+	padding: 2rem 1.5rem 2.25rem;
+}
+.splash-main {
+	align-self: center;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: clamp(2.5rem, 8vw, 6rem);
+}
+.splash-nav {
+	display: flex;
+	flex-direction: column;
+	font-size: clamp(1.45rem, 3.4vw, 2rem);
+	font-weight: 300;
+	line-height: 1.5;
+}
+.splash-nav a {
+	width: max-content;
+	transition:
+		transform 0.3s var(--ease),
+		opacity 0.3s ease;
+}
+.splash-nav a:hover {
+	text-decoration: none;
+	transform: translateX(0.55rem);
+	opacity: 0.5;
+}
+.splash-foot {
+	display: grid;
+	justify-items: center;
+	gap: 1.5rem;
+}
+.splash-cue {
+	font-family: var(--mono);
+	font-size: 0.7rem;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+.splash-cue:hover {
+	text-decoration: none;
+	color: var(--text);
+}
+.splash-cue span {
+	display: inline-block;
+}
+
+/* ---------- socials ---------- */
+.socials {
+	display: flex;
+	justify-content: center;
+	gap: 1.25rem;
+}
+.socials a {
+	display: block;
+	color: var(--muted);
+	transition:
+		color 0.2s ease,
+		transform 0.2s var(--ease);
+}
+.socials a:hover {
+	color: var(--text);
+	transform: translateY(-3px);
+}
+.socials svg {
+	display: block;
+	width: 19px;
+	height: 19px;
+	fill: currentColor;
+}
+
+/* ---------- masthead ---------- */
 .masthead {
 	position: sticky;
 	top: 0;
 	z-index: 50;
-	background: rgba(245, 245, 243, 0.82);
-	backdrop-filter: saturate(160%) blur(12px);
+	background: var(--bg);
 	border-bottom: 1px solid var(--line);
+}
+/* On the home page the splash's own big nav is the masthead, so this one is out
+   of flow (the splash gets the whole viewport) and only arrives on scroll. */
+.home .masthead {
+	position: fixed;
+	inset: 0 0 auto;
 }
 .masthead .wrap {
 	display: flex;
 	align-items: center;
 	gap: 1.5rem;
-	height: 60px;
-}
-.brand {
-	display: inline-flex;
-	align-items: center;
-	gap: 0.55rem;
-	font-weight: 700;
-	font-size: 1rem;
-	letter-spacing: -0.02em;
-	color: var(--text);
-	white-space: nowrap;
-}
-.brand b {
-	font-weight: inherit;
-	color: var(--accent);
-}
-/* Same crop and desaturation as the hero portrait — one face, two sizes. */
-.brand-face {
-	width: 28px;
-	height: 28px;
-	border-radius: 8px;
-	object-fit: cover;
-	object-position: 50% 18%;
-	filter: grayscale(0.25) contrast(1.02);
+	padding-block: 1.1rem;
 }
 .masthead nav {
 	margin-left: auto;
 	display: flex;
-	align-items: center;
-	gap: 1.4rem;
-}
-.masthead nav a:not(.btn) {
-	position: relative;
-	font-size: 0.9rem;
-	font-weight: 500;
+	gap: 1.6rem;
+	font-size: 0.95rem;
 	color: var(--muted);
-	padding: 0.15rem 0;
-	transition: color 0.18s ease;
 }
-.masthead nav a:not(.btn):hover {
+.masthead nav a {
+	position: relative;
+}
+.masthead nav a:hover {
 	color: var(--text);
 	text-decoration: none;
-}
-.masthead nav a:not(.btn)::after {
-	content: "";
-	position: absolute;
-	left: 0;
-	right: 0;
-	bottom: -2px;
-	height: 2px;
-	border-radius: 2px;
-	background: var(--accent);
-	transform: scaleX(0);
-	transform-origin: left;
-	transition: transform 0.2s ease;
-}
-.masthead nav a:not(.btn):hover::after,
-.masthead nav a[aria-current]::after {
-	transform: scaleX(1);
 }
 .masthead nav a[aria-current] {
 	color: var(--text);
 }
-
-/* 390px is the tight case: face + wordmark + two links + the button. */
-@media (max-width: 520px) {
+.masthead nav a::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: -3px;
+	height: 1px;
+	background: currentColor;
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 0.28s var(--ease);
+}
+.masthead nav a:hover::after,
+.masthead nav a[aria-current]::after {
+	transform: scaleX(1);
+}
+@media (max-width: 560px) {
 	.masthead .wrap {
-		gap: 0.75rem;
-		padding-inline: 1rem;
+		gap: 1rem;
 	}
 	.masthead nav {
-		gap: 0.85rem;
-		white-space: nowrap;
+		gap: 1.05rem;
+		font-size: 0.9rem;
 	}
-	.brand {
-		font-size: 0.92rem;
-	}
-	.masthead .btn-sm {
-		padding: 0.42rem 0.6rem;
-	}
-}
-/* Below ~430px all five items can't share a line. The wordmark is the one that
-   goes: the face keeps the identity, and the nav and CTA stay reachable. */
-@media (max-width: 430px) {
-	.brand span {
+	.masthead .brand span {
 		display: none;
 	}
-	.brand-face {
-		width: 32px;
-		height: 32px;
-	}
 }
 
-/* ---------- buttons + chips ---------- */
-.btn {
-	display: inline-flex;
-	align-items: center;
-	gap: 0.5rem;
-	padding: 0.68rem 1.15rem;
-	border-radius: 10px;
-	font-size: 0.95rem;
-	font-weight: 600;
-	line-height: 1;
-	transition:
-		transform 0.16s ease,
-		box-shadow 0.16s ease,
-		background-color 0.16s ease,
-		border-color 0.16s ease;
+/* ---------- page structure ---------- */
+main section {
+	padding-bottom: clamp(3rem, 6vw, 4.5rem);
 }
-.btn:hover {
-	text-decoration: none;
-	transform: translateY(-2px);
+main section.splash {
+	padding-bottom: 2.25rem;
 }
-.btn-primary {
-	background: var(--accent);
-	color: #fff;
-	box-shadow: var(--shadow);
+/* Clears the fixed masthead when you jump to #about. */
+#about {
+	scroll-margin-top: 4.5rem;
 }
-.btn-primary:hover {
-	background: var(--accent-deep);
-	box-shadow: var(--shadow-lift);
+.page-head {
+	max-width: var(--prose);
+	padding-block: clamp(1.5rem, 4vw, 3rem) clamp(2rem, 4vw, 3rem);
 }
-.btn-ghost {
-	background: var(--surface);
-	color: var(--text);
-	border: 1px solid var(--line);
-}
-.btn-ghost:hover {
-	border-color: var(--accent);
-	color: var(--accent);
-}
-.btn-sm {
-	padding: 0.45rem 0.8rem;
-	font-size: 0.85rem;
-	border-radius: 8px;
-}
-
-.chips {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 0.45rem;
-}
-.chip {
-	font-family: var(--mono);
-	font-size: 0.75rem;
-	line-height: 1.5;
-	padding: 0.24rem 0.6rem;
-	border-radius: 6px;
-	background: var(--surface-2);
-	color: var(--muted);
-	border: 1px solid var(--line);
-}
-.eyebrow {
-	font-family: var(--mono);
-	font-size: 0.76rem;
-	font-weight: 500;
-	letter-spacing: 0.1em;
-	text-transform: uppercase;
-	color: var(--muted); /* was accent — eyebrows appear 5x a page, that's not a highlight */
-	margin: 0 0 0.75rem;
-}
-.meta {
-	font-family: var(--mono);
-	font-size: 0.78rem;
-	color: var(--muted);
-}
-.lede {
-	font-size: clamp(1.1rem, 1.6vw, 1.28rem);
-	color: var(--muted);
-	line-height: 1.55;
-}
-
-/* ---------- hero ---------- */
-.hero {
-	padding: clamp(3rem, 7vw, 5.5rem) 0 clamp(2.5rem, 5vw, 4rem);
-}
-.hero .lede {
-	margin-top: 1.25rem;
-	max-width: 36rem;
-}
-.hero .cta {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 0.75rem;
-	margin-top: 1.9rem;
-}
-/* h1 stays full width; the portrait sits beside the lede, not beside the
-   headline, so it balances the empty right column without competing. */
-.hero-body {
-	display: grid;
-	grid-template-columns: 1fr auto;
-	gap: clamp(1.5rem, 4vw, 3rem);
-	align-items: start;
-}
-/* The only photo on the page. Second instance is the 28px one in the header. */
-/* Two masks intersecting: the bottom edge dissolves into the page and the right
-   edge softens against the viewport margin, which kills the hard rectangle that
-   made the orange rim-lit shot the loudest object above the fold. No border
-   radius or shadow — a faded photo inside a hard-edged card fights itself.
-   NB: the spec said `to left` for the second gradient, but that gradient line runs
-   right-to-left, so it fades the LEFT edge and leaves the right a hard vertical
-   line. `to right` is what produces the described effect. */
-.portrait {
-	display: block;
-	width: clamp(15rem, 22vw, 17.5rem); /* 240–280px */
-	aspect-ratio: 4 / 5;
-	object-fit: cover;
-	object-position: 50% 18%;
-	border-radius: 0;
-	box-shadow: none;
-	filter: saturate(0.7) contrast(0.96);
-	-webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent 96%),
-		linear-gradient(to right, #000 70%, transparent 100%);
-	-webkit-mask-composite: source-in;
-	mask-image: linear-gradient(to bottom, #000 45%, transparent 96%),
-		linear-gradient(to right, #000 70%, transparent 100%);
-	mask-composite: intersect;
-}
-@media (max-width: 760px) {
-	.hero-body {
-		grid-template-columns: 1fr;
-	}
-	/* After the CTAs in source order, so nothing pushes the primary button
-	   below the fold on a 390px viewport. */
-	.portrait {
-		width: 10rem;
-	}
-}
-
-/* ---------- sections ---------- */
-section {
-	padding: clamp(3rem, 6vw, 4.75rem) 0;
-}
-section.band {
-	background: var(--surface-2);
-	border-block: 1px solid var(--line);
+.page-head .lede {
+	margin-top: 1.1rem;
 }
 .section-head {
-	max-width: var(--prose);
+	border-top: 1px solid var(--line);
+	padding-top: 1.1rem;
 	margin-bottom: 2.25rem;
 }
+.section-head h2 {
+	margin-top: 0.35rem;
+}
 .section-head p {
-	margin-top: 0.7rem;
+	margin: 0.7rem 0 0;
 	color: var(--muted);
+	max-width: var(--prose);
 }
 .section-foot {
 	margin-top: 2rem;
-	font-family: var(--mono);
-	font-size: 0.82rem;
+	font-size: 0.9rem;
+}
+.section-foot a {
+	text-decoration: underline;
+	text-underline-offset: 0.25em;
+	text-decoration-thickness: 1px;
+	text-decoration-color: var(--line);
+	transition: text-decoration-color 0.2s ease;
+}
+.section-foot a:hover {
+	text-decoration-color: currentColor;
 }
 
-/* ---------- wide project (diagram-led) ---------- */
-/* The three internal projects. Their schematic is the only evidence there is, and
-   its BEFORE/AFTER labels are unreadable below ~600px, so the figure takes the full
-   container width and the text sits underneath. Stacking also means the image and
-   the text panel always meet flush — side by side, the 16:9 figure was shorter than
-   the text column and left a grey band. */
-.card-wide {
-	grid-column: 1 / -1;
+/* ---------- list rows (projects, services, jobs, posts) ---------- */
+.rows {
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
-/* Each schematic carries decorative filler below its content — archeo's excavation
-   strata worst of all — which read as an empty grey band butting against the white
-   text panel. `figure_height` in projects.yml is the content bottom in viewBox units;
-   cropping to it here leaves the SVG files untouched. */
-.wide-figure {
+.rows > li {
+	border-top: 1px solid var(--line);
+	padding: 1.6rem 0;
+	display: grid;
+	grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
+	gap: 0.35rem 2.5rem;
+	align-items: baseline;
+}
+.rows > li:last-child {
+	border-bottom: 1px solid var(--line);
+}
+.rows h3 {
+	font-weight: 500;
+}
+.rows p {
+	margin: 0;
+	color: var(--muted);
+	font-size: 0.98rem;
+	max-width: 40rem;
+}
+.rows .stack,
+.rows .meta {
+	display: block;
+	margin-top: 0.15rem;
+}
+.row-body {
+	display: flex;
+	flex-direction: column;
+	gap: 0.55rem;
+}
+.row-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.1rem;
+	font-size: 0.88rem;
+}
+.row-links a {
+	text-decoration: underline;
+	text-underline-offset: 0.25em;
+	text-decoration-thickness: 1px;
+	text-decoration-color: var(--line);
+	transition: text-decoration-color 0.2s ease;
+}
+.row-links a:hover {
+	text-decoration-color: currentColor;
+}
+
+/* Rows with a thumbnail: the image takes the left column instead of the label. */
+.rows--media > li {
+	grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+	align-items: start;
+	gap: 1.25rem 2.5rem;
+}
+/* `--fig` comes from the project's `figure_height`: it shortens the box to where
+   the schematic's content actually ends, and `cover` + a top-anchored
+   object-position then crops off the decorative filler underneath. Screenshots
+   have no --fig and stay 16:9. */
+.thumb {
 	display: block;
 	aspect-ratio: var(--fig, 1200 / 675);
 	overflow: hidden;
-	background: var(--surface-2);
-	border-bottom: 1px solid var(--line);
-}
-/* Plain overflow clip, not object-fit — an SVG with a viewBox re-fits itself
-   inside whatever box object-fit hands it, so the crop never happened. */
-.wide-figure img {
-	display: block;
-	width: 100%;
-	height: auto;
-}
-.card-wide .card-body {
-	gap: 0.75rem;
-	padding: clamp(1.25rem, 2.5vw, 1.75rem) clamp(1.25rem, 3vw, 2.25rem);
-}
-.card-wide h3 {
-	font-family: var(--display);
-	font-size: 1.5rem;
-	letter-spacing: -0.012em;
-}
-.card-wide .card-body > p {
-	max-width: 46rem;
-}
-/* The two-row minimum exists to align a pair of cards; a full-width row has
-   nothing to align against. */
-.card-wide .chips {
-	min-height: 0;
-}
-
-/* ---------- project cards ---------- */
-.cards {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
-	gap: 1.5rem;
-}
-.card {
-	display: flex;
-	flex-direction: column;
-	background: var(--surface);
 	border: 1px solid var(--line);
-	border-radius: var(--radius);
-	overflow: hidden;
-	box-shadow: var(--shadow);
-	transition:
-		transform 0.22s ease,
-		box-shadow 0.22s ease,
-		border-color 0.22s ease;
+	background: var(--surface);
 }
-.card:hover {
-	transform: translateY(-4px);
-	box-shadow: var(--shadow-lift);
-	border-color: rgba(18, 96, 74, 0.3);
-}
-.card-thumb {
-	display: block;
-	aspect-ratio: 16 / 9;
-	overflow: hidden;
-	background: var(--surface-2);
-	border-bottom: 1px solid var(--line);
-}
-.card-thumb img {
+.thumb img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 	object-position: 50% 0;
-	transition: transform 0.35s ease;
+	transform-origin: top center;
+	transition: transform 0.5s var(--ease);
 }
-.card:hover .card-thumb img {
-	transform: scale(1.035);
+.rows--media > li:hover .thumb img {
+	transform: scale(1.045);
 }
-.card-body {
-	padding: 1.15rem 1.25rem 1.35rem;
-	display: flex;
-	flex-direction: column;
-	gap: 0.7rem;
-	flex: 1;
+.rows--media h3 {
+	margin-top: -0.35rem;
 }
-.card-body h3 a {
-	color: var(--text);
-}
-.card-body h3 a:hover {
-	color: var(--accent);
-	text-decoration: none;
-}
-/* Two rows' worth, so a four-chip stack (Collaborators) doesn't push its
-   blurb down relative to the three-chip cards beside it. */
-.card-body .chips {
-	min-height: 3.9rem;
-	align-content: flex-start;
-}
-.card-body > p {
-	color: var(--muted);
-	font-size: 0.95rem;
-	margin: 0;
-}
-.card-links {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 1rem;
-	font-size: 0.88rem;
-	font-weight: 600;
-	margin-top: auto; /* pinned to the card bottom whatever the blurb length */
-	padding-top: 0.15rem;
-}
-
-/* ---------- timeline ---------- */
-.timeline {
-	border-left: 2px solid var(--line);
-	margin-left: 0.35rem;
-}
-.job {
-	position: relative;
-	padding: 0 0 2rem 1.75rem;
-}
-.job:last-child {
-	padding-bottom: 0;
-}
-.job::before {
-	content: "";
-	position: absolute;
-	left: -0.5rem;
-	top: 0.45rem;
-	width: 0.85rem;
-	height: 0.85rem;
-	border-radius: 50%;
-	background: var(--muted);
-	box-shadow: 0 0 0 4px var(--bg);
-}
-section.band .job::before {
-	box-shadow: 0 0 0 4px var(--surface-2);
-}
-.job h3 {
-	font-size: 1.05rem;
-}
-.job .meta {
-	display: block;
-	margin-top: 0.2rem;
-}
-.job p {
-	margin: 0.6rem 0 0;
-	color: var(--muted);
-	font-size: 0.95rem;
-}
-
-/* ---------- skills (still the shape used twice on /work/) ---------- */
-.skill-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-	gap: 1.25rem;
-}
-.skill-card {
-	background: var(--surface);
-	border: 1px solid var(--line);
-	border-radius: var(--radius);
-	padding: 1.25rem;
-}
-.skill-card h3 {
-	font-family: var(--mono);
-	font-size: 0.74rem;
-	font-weight: 500;
-	letter-spacing: 0.09em;
-	text-transform: uppercase;
-	color: var(--muted);
-	margin-bottom: 0.85rem;
-}
-
-/* ---------- approach: the one full-bleed accent section ---------- */
-.band-accent {
-	background: var(--accent);
-	color: #fff;
-	border-block: 1px solid var(--accent-deep);
-}
-.band-accent .eyebrow,
-.band-accent .section-head p,
-.band-accent .habits p {
-	color: #c3ded3; /* 5.3:1 on --accent */
-}
-.band-accent h2 {
-	color: #fff;
-}
-/* Three annotated lines, not three boxed cards. */
-.habits {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	border-top: 1px solid rgba(255, 255, 255, 0.22);
-}
-.habits li {
-	display: grid;
-	grid-template-columns: 4rem minmax(0, 15rem) minmax(0, 1fr);
-	gap: 0.4rem 2rem;
-	align-items: baseline;
-	padding: 1.6rem 0;
-	border-bottom: 1px solid rgba(255, 255, 255, 0.22);
-}
-.habits-n {
-	font-family: var(--mono);
-	font-size: 0.78rem;
-	color: #b6d4c9; /* 4.7:1 on --accent — 55% white only made 3.5:1 */
-}
-.habits h3 {
-	font-family: var(--display);
-	font-size: 1.35rem;
-	color: #fff;
-}
-.habits p {
-	margin: 0;
-	font-size: 0.98rem;
-}
-@media (max-width: 760px) {
-	.habits li {
-		grid-template-columns: 3rem minmax(0, 1fr);
-		gap: 0.5rem 1rem;
+@media (max-width: 640px) {
+	.rows > li {
+		grid-template-columns: 1fr;
+		gap: 0.7rem;
 	}
-	.habits p {
-		grid-column: 2;
-	}
-}
-
-/* ---------- post list ---------- */
-.posts {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-.posts li {
-	border-top: 1px solid var(--line);
-}
-.posts li:last-child {
-	border-bottom: 1px solid var(--line);
-}
-.posts a {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: baseline;
-	gap: 0.2rem 1.1rem;
-	padding: 1.05rem 0.35rem;
-	color: var(--text);
-	transition:
-		background-color 0.18s ease,
-		padding-left 0.18s ease;
-}
-.posts a:hover {
-	text-decoration: none;
-	background: var(--surface-2);
-	padding-left: 0.7rem;
-	color: var(--accent);
-}
-.posts .meta {
-	flex: 0 0 6rem;
-}
-.posts strong {
-	font-weight: 600;
-	font-size: 1.05rem;
-}
-.posts em {
-	color: var(--muted);
-	font-style: normal;
-	font-size: 0.95rem;
-	flex-basis: 100%;
-}
-
-/* ---------- contact band ---------- */
-.contact-box {
-	display: grid;
-	grid-template-columns: 1fr auto;
-	gap: clamp(1.5rem, 4vw, 3rem);
-	align-items: center;
-	overflow: hidden;
-	border: 1px solid var(--line);
-	border-radius: 20px;
-	background: var(--surface);
-	padding: clamp(1.75rem, 4vw, 2.75rem);
-	box-shadow: var(--shadow);
-}
-.contact-box .lede {
-	margin: 0.8rem 0 0;
-	max-width: 34rem;
-}
-.contact-box .cta {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 0.75rem;
-	margin-top: 1.75rem;
-}
-/* Right half of the card: the details themselves, where the photo used to be. */
-.contact-details {
-	display: grid;
-	grid-template-columns: auto 1fr;
-	gap: 0.55rem 1.1rem;
-	margin: 0;
-	min-width: 17rem;
-	padding-left: clamp(1.5rem, 4vw, 3rem);
-	border-left: 1px solid var(--line);
-}
-.contact-details dt {
-	font-family: var(--mono);
-	font-size: 0.72rem;
-	letter-spacing: 0.08em;
-	text-transform: uppercase;
-	color: var(--muted);
-	line-height: 1.6;
-}
-.contact-details dd {
-	margin: 0;
-	font-size: 0.92rem;
-	overflow-wrap: anywhere;
-}
-@media (max-width: 760px) {
-	.contact-box {
+	.rows--media > li {
 		grid-template-columns: 1fr;
 	}
-	.contact-details {
-		min-width: 0;
-		padding: 1.5rem 0 0;
-		border-left: 0;
-		border-top: 1px solid var(--line);
+	.rows--media h3 {
+		margin-top: 0;
+	}
+}
+
+/* Numbered prose list (the three habits). Same rules, no boxes. */
+.numbered {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	counter-reset: n;
+}
+.numbered > li {
+	counter-increment: n;
+	border-top: 1px solid var(--line);
+	padding: 1.6rem 0;
+	display: grid;
+	grid-template-columns: 3.5rem minmax(0, 1fr);
+	gap: 0.4rem 1.5rem;
+	align-items: baseline;
+}
+.numbered > li::before {
+	content: "0" counter(n);
+	font-family: var(--mono);
+	font-size: 0.78rem;
+	color: var(--muted);
+}
+.numbered p {
+	grid-column: 2;
+	margin: 0;
+	color: var(--muted);
+}
+
+/* ---------- about block (on the home page) ---------- */
+.about-head {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	gap: clamp(1.5rem, 5vw, 3.5rem);
+	align-items: start;
+	padding-block: clamp(2rem, 5vw, 3.5rem) clamp(2rem, 4vw, 3rem);
+}
+.portrait {
+	width: clamp(9rem, 16vw, 13rem);
+	aspect-ratio: 4 / 5;
+	object-fit: cover;
+	object-position: 50% 18%;
+}
+@media (max-width: 700px) {
+	.about-head {
+		grid-template-columns: 1fr;
+	}
+	.portrait {
+		width: 8rem;
+	}
+}
+
+.details {
+	display: grid;
+	grid-template-columns: minmax(0, 8rem) minmax(0, 1fr);
+	gap: 0.15rem 2rem;
+	margin: 0;
+	max-width: 34rem;
+}
+.details dt {
+	font-family: var(--mono);
+	font-size: 0.72rem;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--muted);
+	padding-top: 0.35rem;
+}
+.details dd {
+	margin: 0 0 0.6rem;
+	overflow-wrap: anywhere;
+}
+.details dd a {
+	text-decoration: underline;
+	text-underline-offset: 0.25em;
+	text-decoration-thickness: 1px;
+	text-decoration-color: var(--line);
+}
+@media (max-width: 460px) {
+	.details {
+		grid-template-columns: 1fr;
+	}
+	.details dt {
+		padding-top: 0.8rem;
 	}
 }
 
 /* ---------- post body ---------- */
-.post {
-	max-width: var(--prose);
-	margin-inline: auto;
-}
+.post,
 .post-head {
 	max-width: var(--prose);
-	margin: 0 auto 2rem;
 }
-.post + .section-foot {
-	max-width: var(--prose);
-	margin-inline: auto;
+.post-head {
+	padding-block: clamp(1.5rem, 4vw, 3rem) 2.25rem;
 }
 .post-head .meta {
 	display: block;
-	margin-top: 0.7rem;
+	margin-top: 0.9rem;
 }
 .post h2 {
-	font-size: 1.5rem;
 	margin: 3rem 0 0.85rem;
 	scroll-margin-top: 5rem;
 }
 .post h3 {
-	margin: 2.1rem 0 0.6rem;
+	margin: 2rem 0 0.5rem;
 }
 .post h2 + h3 {
-	margin-top: 1.4rem;
+	margin-top: 1.3rem;
 }
-/* Figures break out of the 40rem prose column and centre on the measure: the
-   schematics need ~1000px for their BEFORE/AFTER labels to stay readable, and at
-   prose width they rendered at 9px. */
+/* Figures break out of the prose column to the full wrap width — the schematics
+   need ~1000px for their BEFORE/AFTER labels to stay readable. `--measure - 3rem`
+   IS the wrap's content width, so the figure's left edge lands on the text's. */
 .post img {
 	display: block;
-	border-radius: 10px;
 	border: 1px solid var(--line);
 	width: min(calc(var(--measure) - 3rem), calc(100vw - 3rem));
 	max-width: none;
-	margin: 1.75rem 0 1.75rem 50%;
-	transform: translateX(-50%);
+	margin: 1.75rem 0;
 }
 .post figure {
 	margin: 1.75rem 0;
@@ -782,9 +597,6 @@ section.band .job::before {
 .post li {
 	margin-bottom: 0.4rem;
 }
-/* Links inside running prose carry an underline: accent green against near-black
-   body text is not distinguishable by hue alone. Nav, buttons and card links are
-   distinguishable by position, so they stay clean. */
 .post p a,
 .post li a {
 	text-decoration: underline;
@@ -793,8 +605,8 @@ section.band .job::before {
 }
 .post blockquote {
 	margin: 1.75rem 0;
-	padding: 0.2rem 0 0.2rem 1.15rem;
-	border-left: 3px solid var(--line);
+	padding-left: 1.15rem;
+	border-left: 1px solid var(--line);
 	color: var(--muted);
 }
 .post hr {
@@ -802,23 +614,24 @@ section.band .job::before {
 	border-top: 1px solid var(--line);
 	margin: 3rem 0;
 }
-/* project fact block inside a case study */
+/* Fact line under a case-study heading: stack and links, rules only. */
 .facts {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 0.5rem 1.5rem;
-	align-items: center;
-	padding: 0.85rem 1rem;
+	gap: 0.4rem 1.5rem;
+	align-items: baseline;
+	padding: 0.7rem 0;
 	margin: 0 0 1.4rem;
-	background: var(--surface-2);
-	border: 1px solid var(--line);
-	border-radius: 10px;
-	font-family: var(--mono);
-	font-size: 0.78rem;
+	border-block: 1px solid var(--line);
+	font-size: 0.8rem;
 	color: var(--muted);
 }
 .facts a {
-	font-weight: 600;
+	color: var(--text);
+	text-decoration: underline;
+	text-underline-offset: 0.25em;
+	text-decoration-thickness: 1px;
+	text-decoration-color: var(--line);
 }
 
 code,
@@ -826,78 +639,126 @@ pre {
 	font-family: var(--mono);
 	font-size: 0.85em;
 }
-code {
-	background: var(--surface-2);
-	border: 1px solid var(--line);
-	padding: 0.08em 0.34em;
-	border-radius: 4px;
-}
 pre {
-	background: var(--surface-2);
 	border: 1px solid var(--line);
-	border-radius: 10px;
 	padding: 1rem 1.1rem;
 	margin: 1.75rem 0;
 	overflow-x: auto;
 	line-height: 1.5;
-}
-pre code {
-	background: none;
-	border: 0;
-	padding: 0;
 }
 
 /* ---------- footer ---------- */
 footer {
 	border-top: 1px solid var(--line);
 	padding: 2rem 0 3rem;
-	margin-top: 1rem;
 }
 footer .wrap {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 0.5rem 1.5rem;
 	align-items: center;
+	gap: 1rem 1.5rem;
 }
 footer .meta {
 	margin-right: auto;
 }
-footer nav {
-	display: flex;
+footer .socials {
 	gap: 1.1rem;
-	font-size: 0.88rem;
 }
 
-/* ---------- motion ---------- */
-@keyframes reveal-in {
+/* ================= motion ================= */
+@keyframes rise {
 	from {
 		opacity: 0;
-		transform: translateY(16px);
-	}
-	to {
-		opacity: 1;
-		transform: none;
+		transform: translateY(1.1rem);
 	}
 }
-/* Native scroll-driven reveal — no JS. Browsers without support just show content. */
-@supports (animation-timeline: view()) {
-	@media (prefers-reduced-motion: no-preference) {
-		.reveal {
-			animation: reveal-in linear both;
+@keyframes pop {
+	from {
+		opacity: 0;
+		transform: scale(0.7);
+	}
+}
+@keyframes bob {
+	50% {
+		transform: translateY(5px);
+	}
+}
+@keyframes splash-out {
+	to {
+		opacity: 0;
+		transform: translateY(-3.5rem) scale(0.94);
+	}
+}
+@keyframes drop-in {
+	from {
+		opacity: 0;
+		transform: translateY(-100%);
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		scroll-behavior: smooth;
+	}
+
+	/* --- splash entrance: face, then the name letter by letter, then the nav --- */
+	.brand-lg img {
+		animation: pop 0.75s var(--ease) both;
+	}
+	.wm-line i {
+		animation: rise 0.55s var(--ease) both;
+		animation-delay: calc(0.2s + var(--i) * 0.045s);
+	}
+	.splash-nav a {
+		animation: rise 0.6s var(--ease) both;
+		animation-delay: calc(0.55s + var(--i) * 0.1s);
+	}
+	/* On the children, not .splash-foot itself — the scroll-morph rule below claims
+	   that element's `animation` shorthand and would drop the entrance. */
+	.splash-foot > * {
+		animation: rise 0.7s var(--ease) both;
+		animation-delay: 1s;
+	}
+	.splash-cue span {
+		animation: bob 1.8s ease-in-out 2s infinite;
+	}
+
+	/* --- scroll morph: the splash dissolves upward as the compact masthead
+	       drops in, so the home page turns into an ordinary page as you go.
+	       One scroll(root) clock drives both halves. --- */
+	@supports (animation-timeline: scroll()) {
+		.home .masthead {
+			animation: drop-in linear both;
+			animation-timeline: scroll(root);
+			animation-range: 15vh 55vh;
+		}
+		.splash-main,
+		.splash-foot {
+			animation: splash-out linear both;
+			animation-timeline: scroll(root);
+			animation-range: 0 68vh;
+		}
+	}
+
+	/* --- scroll reveals on everything below the fold, no JS --- */
+	@supports (animation-timeline: view()) {
+		.about-head,
+		.section-head,
+		.rows > li,
+		.numbered > li,
+		.details {
+			animation: rise linear both;
 			animation-timeline: view();
-			animation-range: entry 5% cover 22%;
+			animation-range: entry 8% cover 26%;
 		}
 	}
 }
+
 @media (prefers-reduced-motion: reduce) {
 	*,
 	*::before,
 	*::after {
 		animation: none !important;
 		transition: none !important;
-	}
-	.card:hover,
-	.btn:hover {
-		transform: none;
 	}
 }

@@ -1,44 +1,17 @@
 {%- assign p = include.project -%}
-{%- comment -%}
-Two shapes, picked by `wide`. Wide is for the three internal projects whose
-schematic IS the evidence — at card width its BEFORE/AFTER labels are unreadable,
-so the diagram spans the grid and the text sits beside it. Everything with a live
-link shows a screenshot and fits a normal card.
-{%- endcomment -%}
-{%- if p.wide -%}
-<article class="card card-wide reveal">
-  <a class="wide-figure" style="--fig: 1200 / {{ p.figure_height | default: 675 }}" href="{{ include.post_url }}#{{ p.anchor }}">
+<li>
+  <a class="thumb" style="--fig: 1200 / {{ p.figure_height | default: 675 }}" href="{{ include.post_url }}#{{ p.anchor }}" tabindex="-1" aria-hidden="true">
     <img src="{{ p.image }}" alt="{{ p.alt }}" width="1200" height="675" loading="lazy" decoding="async">
   </a>
-  <div class="card-body">
-    <p class="eyebrow">Before → after</p>
-    <h3><a href="{{ include.post_url }}#{{ p.anchor }}">{{ p.name }}</a></h3>
-    <p>{{ p.blurb }}</p>
-    <div class="chips">
-      {%- for tech in p.stack %}<span class="chip">{{ tech }}</span>{% endfor -%}
-    </div>
-    <div class="card-links">
-      <a href="{{ include.post_url }}#{{ p.anchor }}">Case study →</a>
-    </div>
-  </div>
-</article>
-{%- else -%}
-<article class="card reveal">
-  <div class="card-thumb">
-    <img src="{{ p.image }}" alt="{{ p.alt }}" width="1200" height="675" loading="lazy" decoding="async">
-  </div>
-  <div class="card-body">
+  <div class="row-body">
     <h3>{% if p.anchor %}<a href="{{ include.post_url }}#{{ p.anchor }}">{{ p.name }}</a>{% else %}{{ p.name }}{% endif %}</h3>
-    <div class="chips">
-      {%- for tech in p.stack %}<span class="chip">{{ tech }}</span>{% endfor -%}
-    </div>
+    <span class="stack">{{ p.stack | join: " · " }}</span>
     <p>{{ p.blurb }}</p>
-    <div class="card-links">
+    <div class="row-links">
       {%- for link in p.links %}
       <a href="{{ link.url }}"{% unless link.url contains "andrei-dragomir.com" %} target="_blank" rel="noopener"{% endunless %}>{{ link.label }} ↗</a>
       {%- endfor %}
       {%- if p.anchor %}<a href="{{ include.post_url }}#{{ p.anchor }}">Case study →</a>{% endif %}
     </div>
   </div>
-</article>
-{%- endif -%}
+</li>

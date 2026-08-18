@@ -1,23 +1,10 @@
-# Single source for project cards, rendered by _includes/project-card.html
-# on both index.md and work.md. `anchor` points into the case-study post.
-# File order is render order on both pages; `featured` picks the three on the
-# home page. Archeo leads deliberately — real client, real operational mess,
-# clean before/after.
-
-- name: Archeo
-  featured: true
-  wide: true
-  figure_height: 455
-  image: /assets/work/archeo.svg
-  alt: Loose spreadsheets and PDF reports consolidated into one records system
-  stack: [Ruby on Rails, TailwindCSS, PostgreSQL]
-  blurb: >
-    An internal platform for an excavation company running on dozens of Excel sheets
-    where nobody was sure which file was current. Sites, crews and hours in one system.
-  anchor: archeo
+# Single source for the project list, rendered by _includes/project-row.html on
+# /projects/. File order is render order: the four with real screenshots lead,
+# then the five whose evidence is a schematic. `anchor:` must match a heading id
+# in the case-study post. `figure_height` is where a schematic's content ends in
+# viewBox units; the thumbnail crops to it so the filler below never shows.
 
 - name: Pastrac
-  featured: true
   image: /assets/work/pastrac.jpg
   alt: The Pastrac marketing site, showing the iOS app on a live map
   stack: [React Native, Supabase, iOS]
@@ -42,7 +29,6 @@
     - { label: "Code", url: "https://github.com/andr-drgm/collaborators" }
 
 - name: Med Prep
-  featured: true
   image: /assets/work/medprep.jpg
   alt: The Med Prep website for Swiss medical school preparation
   stack: [Ruby on Rails, Stripe, PostgreSQL]
@@ -53,8 +39,29 @@
   links:
     - { label: "medprep.ch", url: "https://www.medprep.ch/" }
 
+- name: Crypto Staking Calculator
+  image: /assets/work/staking-calculator.jpg
+  alt: A retro arcade styled staking reward calculator
+  stack: [React 18, Material UI]
+  blurb: >
+    A retro arcade–styled staking calculator that estimates rewards and compares plain
+    APR against compounding. A finance tool with a personality, shipped end to end.
+  anchor: staking-calculator
+  links:
+    - { label: "Live demo", url: "https://andrei-dragomir.com/crypto-staking-calculator/" }
+    - { label: "Code", url: "https://github.com/andr-drgm/crypto-staking-calculator" }
+
+- name: Archeo
+  figure_height: 455
+  image: /assets/work/archeo.svg
+  alt: Loose spreadsheets and PDF reports consolidated into one records system
+  stack: [Ruby on Rails, TailwindCSS, PostgreSQL]
+  blurb: >
+    An internal platform for an excavation company running on dozens of Excel sheets
+    where nobody was sure which file was current. Sites, crews and hours in one system.
+  anchor: archeo
+
 - name: R&T product platform
-  wide: true
   figure_height: 625
   image: /assets/work/rt-platform.svg
   alt: Products moving through research and testing stages toward market
@@ -65,7 +72,6 @@
   anchor: rt-platform
 
 - name: Agency automation
-  wide: true
   figure_height: 545
   image: /assets/work/dpa-automation.svg
   alt: Repetitive browser work moved from people onto scheduled automation
@@ -86,18 +92,6 @@
   links:
     - { label: "Live site", url: "https://dss-inox-website.web.app/" }
     - { label: "Code", url: "https://github.com/andr-drgm/dss-inox-website" }
-
-- name: Crypto Staking Calculator
-  image: /assets/work/staking-calculator.jpg
-  alt: A retro arcade styled staking reward calculator
-  stack: [React 18, Material UI]
-  blurb: >
-    A retro arcade–styled staking calculator that estimates rewards and compares plain
-    APR against compounding. A finance tool with a personality, shipped end to end.
-  anchor: staking-calculator
-  links:
-    - { label: "Live demo", url: "https://andrei-dragomir.com/crypto-staking-calculator/" }
-    - { label: "Code", url: "https://github.com/andr-drgm/crypto-staking-calculator" }
 
 - name: WallApp
   image: /assets/work/wallapp.svg

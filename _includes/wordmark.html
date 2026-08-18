@@ -1,0 +1,11 @@
+{%- comment -%}
+Two lines of individually-animatable letters. Both lines are stretched to the
+width of the longer one by flex space-between, so ANDREI and DRAGOMIR come out
+flush on both edges without a hardcoded tracking value per line. The split is
+decorative — the real name is exposed once, in .sr-only.
+{%- endcomment -%}
+<span class="wordmark">
+  <span class="wm-line" aria-hidden="true"><i style="--i:0">A</i><i style="--i:1">N</i><i style="--i:2">D</i><i style="--i:3">R</i><i style="--i:4">E</i><i style="--i:5">I</i></span>
+  <span class="wm-line" aria-hidden="true"><i style="--i:6">D</i><i style="--i:7">R</i><i style="--i:8">A</i><i style="--i:9">G</i><i style="--i:10">O</i><i style="--i:11">M</i><i style="--i:12">I</i><i style="--i:13">R</i></span>
+  <span class="sr-only">Andrei Dragomir</span>
+</span>

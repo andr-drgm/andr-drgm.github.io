@@ -8,7 +8,7 @@ repository: andr-drgm/andr-drgm.github.io
 author: Andrei Dragomir
 email: andrei.dragomir.contact@gmail.com
 
-permalink: /writing/:title/
+permalink: /blog/:title/
 
 plugins:
   - jekyll-sitemap

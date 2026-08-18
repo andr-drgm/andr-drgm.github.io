@@ -11,7 +11,7 @@ problem, approach, outcome, for the work I'd want to be judged on.
 
 Three of these are what I'm actively building right now — [Pastrac](#pastrac),
 [Collaborators](#collaborators), and [Med Prep](#medprep). The rest run backwards from there.
-If you want the scannable version instead, [/work/](/work/) has the cards.
+If you want the scannable version instead, [/projects/](/projects/) has the short version.
 
 ## Pastrac {#pastrac}
 
