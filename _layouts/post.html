@@ -1,19 +1,32 @@
 ---
 layout: default
 ---
+{%- comment -%}
+Case-study layout. Stack, links and the hero image come from front matter so the
+same values feed the project rows on /projects/ and the home page preview.
+{%- endcomment -%}
 <section>
   <div class="wrap">
     <div class="post-head">
-      <p class="label">Blog</p>
+      <p class="label">Case study</p>
       <h1>{{ page.title }}</h1>
       {% if page.description %}<p class="lede" style="margin-top:1rem">{{ page.description }}</p>{% endif %}
-      <span class="meta">{{ page.date | date: "%d %B %Y" }} · {{ content | number_of_words | divided_by: 220 | plus: 1 }} min read</span>
+      <div class="facts">
+        {%- if page.stack %}<span>{{ page.stack | join: " · " }}</span>{% endif %}
+        {%- for link in page.links %}
+        <a href="{{ link.url }}"{% unless link.url contains "andrei-dragomir.com" %} target="_blank" rel="noopener"{% endunless %}>{{ link.label }} ↗</a>
+        {%- endfor %}
+        {%- unless page.links %}<span>Internal, no public link</span>{% endunless %}
+      </div>
     </div>
 
     <article class="post">
+      {%- if page.image %}
+      <img src="{{ page.image }}" alt="{{ page.alt }}" width="1200" height="{{ page.height | default: 675 }}" decoding="async">
+      {%- endif %}
       {{ content }}
     </article>
 
-    <p class="section-foot"><a href="/blog/">← All writing</a></p>
+    <p class="section-foot"><a href="/projects/">← All projects</a></p>
   </div>
 </section>

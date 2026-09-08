@@ -1,17 +1,22 @@
-{%- assign p = include.project -%}
+{%- comment -%}
+One project row, rendered from a case-study post's front matter. Used by /projects/
+and by the preview on the home page; the post IS the single source for the
+thumbnail, stack, blurb and links, so nothing has to be kept in sync by hand.
+{%- endcomment -%}
+{%- assign p = include.post -%}
 <li>
-  <a class="thumb" style="--fig: 1200 / {{ p.figure_height | default: 675 }}" href="{{ include.post_url }}#{{ p.anchor }}" tabindex="-1" aria-hidden="true">
+  <a class="thumb" style="--fig: 1200 / {{ p.height | default: 675 }}" href="{{ p.url }}" tabindex="-1" aria-hidden="true">
     <img src="{{ p.image }}" alt="{{ p.alt }}" width="1200" height="675" loading="lazy" decoding="async">
   </a>
   <div class="row-body">
-    <h3>{% if p.anchor %}<a href="{{ include.post_url }}#{{ p.anchor }}">{{ p.name }}</a>{% else %}{{ p.name }}{% endif %}</h3>
+    <h3><a href="{{ p.url }}">{{ p.title }}</a></h3>
     <span class="stack">{{ p.stack | join: " · " }}</span>
-    <p>{{ p.blurb }}</p>
+    <p>{{ p.description }}</p>
     <div class="row-links">
       {%- for link in p.links %}
       <a href="{{ link.url }}"{% unless link.url contains "andrei-dragomir.com" %} target="_blank" rel="noopener"{% endunless %}>{{ link.label }} ↗</a>
       {%- endfor %}
-      {%- if p.anchor %}<a href="{{ include.post_url }}#{{ p.anchor }}">Case study →</a>{% endif %}
+      <a href="{{ p.url }}">Case study →</a>
     </div>
   </div>
 </li>

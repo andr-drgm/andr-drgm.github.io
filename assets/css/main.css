@@ -422,7 +422,7 @@ main section.splash {
 	align-items: start;
 	gap: 1.25rem 2.5rem;
 }
-/* `--fig` comes from the project's `figure_height`: it shortens the box to where
+/* `--fig` comes from the post's `height`: it shortens the box to where
    the schematic's content actually ends, and `cover` + a top-anchored
    object-position then crops off the decorative filler underneath. Screenshots
    have no --fig and stay 16:9. */

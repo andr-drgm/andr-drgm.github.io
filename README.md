@@ -18,7 +18,7 @@ Body in markdown. Images go in `assets/posts/` and are referenced from root:
 ![alt text](/assets/posts/my-image.jpg)
 ```
 
-Push to `master` and it's live at `/blog/slug/`. A post dated in the future
+Push to `master` and it's live at `/projects/slug/`. A post dated in the future
 won't publish until that date.
 
 ## Local preview
@@ -30,10 +30,10 @@ bundle exec jekyll serve # http://localhost:4000
 
 ## Adding or editing a project
 
-`/projects/` renders from **`_data/projects.yml`** — edit that one file, not the page.
-`anchor:` must match a heading id in the case-study post (`## Name {#anchor}`).
+`/projects/` and the home-page preview both render from the posts in `_posts/` — a
+project is a case study, so `image:`, `stack:`, `links:` and `description:` in its
+front matter feed the row. `height:` shortens the thumbnail box; omit it for 16:9.
 
-The list carries no thumbnails, so the only images are the ones inside the case study.
 Screenshots go in `assets/work/` as 1200px-wide JPEGs:
 
 ```bash
@@ -44,7 +44,8 @@ sips -Z 1200 --setProperty formatOptions 72 shot.png --out assets/work/name.jpg
 
 - `index.md` — splash first viewport, then the about copy. There is no `/about/` URL;
   the nav points at `/#about`, so that copy lives in exactly one place.
-- `blog.md`, `projects.md` — the two inner pages. One layout, `_layouts/default.html`.
+- `projects.md` — the one inner page. One layout, `_layouts/default.html`; case
+  studies add `_layouts/post.html`.
 - `_includes/` — `head.html`, `nav.html`, `socials.html` and `wordmark.html` (the
   letter-split name); `project-row.html` renders one row of the project list.
 - `assets/css/main.css` — the whole design. No webfont, no accent colour: system sans,

@@ -1,9 +1,9 @@
 {%- comment -%}
 Same three links in the splash nav and the masthead. `--i` only does anything in
-the splash, where the items stagger in. About lives on the home page now, so it's
-a fragment link from home and a cross-page one from everywhere else.
+the splash, where the items stagger in. About and Contact live on the home page,
+so they're fragment links from home and cross-page ones from everywhere else.
 {%- endcomment -%}
-{%- if page.url == "/" -%}{%- assign about = "#about" -%}{%- else -%}{%- assign about = "/#about" -%}{%- endif -%}
-<a href="{{ about }}" style="--i:0">About</a>
-<a href="/blog/" style="--i:1"{% if page.url == "/blog/" or page.date %} aria-current="page"{% endif %}>Blog</a>
-<a href="/projects/" style="--i:2"{% if page.url == "/projects/" %} aria-current="page"{% endif %}>Projects</a>
+{%- if page.url == "/" -%}{%- assign home = "" -%}{%- else -%}{%- assign home = "/" -%}{%- endif -%}
+<a href="{{ home }}#about" style="--i:0">About</a>
+<a href="/projects/" style="--i:1"{% if page.url == "/projects/" or page.date %} aria-current="page"{% endif %}>Projects</a>
+<a href="{{ home }}#contact" style="--i:2">Contact</a>
